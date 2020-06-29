@@ -1,10 +1,10 @@
 import Foundation
 
 public struct KeyValuePair {
-    let key: String
-    let value: String?
+    public let key: String
+    public let value: String?
     
-    init(_ key: String, _ value: String? = nil) {
+    public init(_ key: String, _ value: String? = nil) {
         self.key = key
         self.value = value
     }
@@ -24,7 +24,7 @@ public struct RequestFilter {
     public var queryItems: [KeyValuePair]?
     public var headerFields: [KeyValuePair]?
     
-    init(httpMethod: String? = nil, scheme: String? = nil, host: String? = nil, port: Int? = nil,
+    public init(httpMethod: String? = nil, scheme: String? = nil, host: String? = nil, port: Int? = nil,
          queryItems: [KeyValuePair]? = nil, headerFields: [KeyValuePair]? = nil) {
         self.httpMethod = httpMethod
         self.scheme = scheme
