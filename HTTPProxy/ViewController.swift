@@ -71,8 +71,10 @@ class ViewController: UIViewController {
     
     @IBAction func sendPeriodicallyWwitchChanged(_ sender: UISwitch) {
         if sender.isOn {
-            timer = Timer.scheduledTimer(withTimeInterval: TimeInterval(self.interval), repeats: true) { _ in
-                self.sendTestRequests()
+            if #available(iOS 10.0, *) {
+                timer = Timer.scheduledTimer(withTimeInterval: TimeInterval(self.interval), repeats: true) { _ in
+                    self.sendTestRequests()
+                }
             }
         } else {
             timer?.invalidate()
@@ -92,11 +94,13 @@ class ViewController: UIViewController {
     }
     
     func sendTestRequests() {
-        sendGet()
         sendPut()
+        sendGet()
+        sendGetWithParameters()
         sendPost()
         sendDelete()
         sendPatch()
+        sendGet401()
         getXml()
         getHtml()
         getYml()
@@ -147,12 +151,26 @@ class ViewController: UIViewController {
     }
     
     func sendGet() {
-        let url = URL(string: "https://postman-echo.com/delay/2")!
+        let url = URL(string: "https://postman-echo.com/delay/3")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         sendRequest(request)
     }
     
+    func sendGetWithParameters() {
+        let url = URL(string: "http://postman-echo.com/get?foo1=bar1&foo2=bar2")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        sendRequest(request)
+    }
+
+    func sendGet401() {
+        let url = URL(string: "https://postman-echo.com/status/401")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        sendRequest(request)
+    }
+
     func sendDelete() {
         let url = URL(string: "https://jsonplaceholder.typicode.com/posts/0")!
         var request = URLRequest(url: url)

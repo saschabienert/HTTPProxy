@@ -4,5 +4,6 @@ excluded:
   - "HTTPProxyUITests"
 disabled_rules:
   - "trailing_whitespace"
+  - "force_cast"
 line_length:
   warning: 200
