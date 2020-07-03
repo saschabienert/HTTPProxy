@@ -16,6 +16,36 @@ class ViewController: UIViewController {
         
         self.sendRequest(self)
         
+        var filters: [HTTPProxyFilter] = []
+        
+        var requestFilter = RequestFilter()
+        requestFilter.host = "jsonplaceholder.typicode.com"
+        let filter = HTTPProxyFilter(name: "jsonplaceholder", requestFilter: requestFilter)
+        filters.append(filter)
+
+        requestFilter = RequestFilter()
+        requestFilter.host = "postman-echo.com"
+        let filter2 = HTTPProxyFilter(name: "Postman", requestFilter: requestFilter)
+        filters.append(filter2)
+        
+        requestFilter = RequestFilter()
+        requestFilter.httpMethod = "DELETE"
+        let filter3 = HTTPProxyFilter(name: "DELETE", requestFilter: requestFilter)
+        filters.append(filter3)
+        
+        requestFilter = RequestFilter()
+        requestFilter.queryItems = [KeyValuePair("foo2", "bar2")]
+        let filter4 = HTTPProxyFilter(name: "query", requestFilter: requestFilter)
+        filters.append(filter4)
+
+        requestFilter = RequestFilter()
+        requestFilter.scheme = "https"
+        let filter5 = HTTPProxyFilter(name: "https", requestFilter: requestFilter)
+        filter5.enabled = true
+        filters.append(filter5)
+        
+        HTTPProxy.shared.filters = filters
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.showMonitor(self)
         }
@@ -41,8 +71,10 @@ class ViewController: UIViewController {
     
     @IBAction func sendPeriodicallyWwitchChanged(_ sender: UISwitch) {
         if sender.isOn {
-            timer = Timer.scheduledTimer(withTimeInterval: TimeInterval(self.interval), repeats: true) { _ in
-                self.sendTestRequests()
+            if #available(iOS 10.0, *) {
+                timer = Timer.scheduledTimer(withTimeInterval: TimeInterval(self.interval), repeats: true) { _ in
+                    self.sendTestRequests()
+                }
             }
         } else {
             timer?.invalidate()
@@ -62,11 +94,13 @@ class ViewController: UIViewController {
     }
     
     func sendTestRequests() {
-        sendGet()
         sendPut()
+        sendGet()
+        sendGetWithParameters()
         sendPost()
         sendDelete()
         sendPatch()
+        sendGet401()
         getXml()
         getHtml()
         getYml()
@@ -117,12 +151,26 @@ class ViewController: UIViewController {
     }
     
     func sendGet() {
-        let url = URL(string: "https://postman-echo.com/delay/2")!
+        let url = URL(string: "https://postman-echo.com/delay/3")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         sendRequest(request)
     }
     
+    func sendGetWithParameters() {
+        let url = URL(string: "http://postman-echo.com/get?foo1=bar1&foo2=bar2")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        sendRequest(request)
+    }
+
+    func sendGet401() {
+        let url = URL(string: "https://postman-echo.com/status/401")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        sendRequest(request)
+    }
+
     func sendDelete() {
         let url = URL(string: "https://jsonplaceholder.typicode.com/posts/0")!
         var request = URLRequest(url: url)
