@@ -36,12 +36,12 @@ class ViewController: UIViewController {
         requestFilter = RequestFilter()
         requestFilter.queryItems = [KeyValuePair("foo2", "bar2")]
         let filter4 = HTTPProxyFilter(name: "query", requestFilter: requestFilter)
-        //filter4.enabled = true
         filters.append(filter4)
 
         requestFilter = RequestFilter()
-        requestFilter.scheme = "http"
-        let filter5 = HTTPProxyFilter(name: "http", requestFilter: requestFilter)
+        requestFilter.scheme = "https"
+        let filter5 = HTTPProxyFilter(name: "https", requestFilter: requestFilter)
+        filter5.enabled = true
         filters.append(filter5)
         
         HTTPProxy.shared.filters = filters

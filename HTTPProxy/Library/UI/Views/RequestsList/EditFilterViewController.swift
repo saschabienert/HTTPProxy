@@ -34,7 +34,10 @@ class EditFilterViewController: UIViewController {
         tableViewBottonInset = tableViewBottomLayoutConstraint.constant
 
         if let filter = filter {
+            title = "Edit Filter"
             loadView(filter: filter)
+        } else {
+            title = "New Filter"
         }
     }
     
