@@ -32,9 +32,9 @@ class RequestsListPresenter: NSObject {
 
         navigationController.modalPresentationStyle = .fullScreen
         requestsViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(close))
-        let composeButton =  UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(filter))
+        let filterButton =  UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(filter))
         let clearButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(clear))
-        requestsViewController.navigationItem.rightBarButtonItems = [clearButton, composeButton]
+        requestsViewController.navigationItem.rightBarButtonItems = [clearButton, filterButton]
         
         HTTPProxy.shared.internalDelegate = self
     }
