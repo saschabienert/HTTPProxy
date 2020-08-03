@@ -3,10 +3,10 @@ import UIKit
 class RequestsListCell: UITableViewCell {
     
     @IBOutlet private var containerView: UIView!
-    @IBOutlet private var titleLabel: UILabel!
+    @IBOutlet private var titleLabel: SelectableLabel!
     @IBOutlet private var methodLabel: UILabel!
     @IBOutlet private var statusLabel: UILabel!
-    @IBOutlet private var contentLabel: UILabel!
+    @IBOutlet private var contentLabel: SelectableLabel!
     @IBOutlet private var activityView: UIActivityIndicatorView!
     
     override func awakeFromNib() {
