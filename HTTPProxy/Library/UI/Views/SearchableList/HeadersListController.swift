@@ -2,7 +2,7 @@ import UIKit
 
 protocol HeadersListControllerDelegate: class {
 
-    func didSelectItem(at index: Int)
+    func didSelectItem(at indexPath: IndexPath)
 }
     
 class HeadersListController: NSObject {
@@ -91,6 +91,6 @@ extension HeadersListDataSource: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.didSelectItem(at: indexPath.row)
+        delegate?.didSelectItem(at: indexPath)
     }
 }
