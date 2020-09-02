@@ -30,7 +30,6 @@
 		80D7D9D9244473CD00D115C1 /* HTTPProxyUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D7D9D8244473CD00D115C1 /* HTTPProxyUI.swift */; };
 		80EF1E87242798140016D0A2 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EF1E5B242798140016D0A2 /* Data.swift */; };
 		80EF1E88242798140016D0A2 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EF1E5C242798140016D0A2 /* UIColor.swift */; };
-		80EF1E89242798140016D0A2 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EF1E5D242798140016D0A2 /* SegmentedControl.swift */; };
 		80EF1E8B242798140016D0A2 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EF1E5F242798140016D0A2 /* String.swift */; };
 		80EF1E8C242798140016D0A2 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EF1E60242798140016D0A2 /* UIFont.swift */; };
 		80EF1E8D242798140016D0A2 /* UIWindow+ShakeGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EF1E61242798140016D0A2 /* UIWindow+ShakeGesture.swift */; };
@@ -119,7 +118,6 @@
 		80D7D9D8244473CD00D115C1 /* HTTPProxyUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPProxyUI.swift; sourceTree = "<group>"; };
 		80EF1E5B242798140016D0A2 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		80EF1E5C242798140016D0A2 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
-		80EF1E5D242798140016D0A2 /* SegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
 		80EF1E5F242798140016D0A2 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		80EF1E60242798140016D0A2 /* UIFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
 		80EF1E61242798140016D0A2 /* UIWindow+ShakeGesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWindow+ShakeGesture.swift"; sourceTree = "<group>"; };
@@ -282,7 +280,6 @@
 				80093AEE24887DB9000AD359 /* CollectionViewCenterLayout.swift */,
 				80EF1E5B242798140016D0A2 /* Data.swift */,
 				80093AEC24881BCB000AD359 /* RoundedView.swift */,
-				80EF1E5D242798140016D0A2 /* SegmentedControl.swift */,
 				80EF1E5F242798140016D0A2 /* String.swift */,
 				80EF1E5C242798140016D0A2 /* UIColor.swift */,
 				80EF1E60242798140016D0A2 /* UIFont.swift */,
@@ -630,7 +627,6 @@
 				80C632F6248BB0DA00B36353 /* EditFilterViewController.swift in Sources */,
 				80EF1EA8242798140016D0A2 /* HTTPProxyRequestInterceptorDelegate.swift in Sources */,
 				80D7D9D9244473CD00D115C1 /* HTTPProxyUI.swift in Sources */,
-				80EF1E89242798140016D0A2 /* SegmentedControl.swift in Sources */,
 				80EF1EAD242798140016D0A2 /* HTTPProxyURLProtocol.swift in Sources */,
 				801453032493AC0D003DE46E /* CollectionViewCenterLayout.swift in Sources */,
 				806E1AB02427948D005D7E24 /* AppDelegate.swift in Sources */,
