@@ -143,10 +143,10 @@ extension SearchableListViewController: RequestDetailsViewInput {
 
 extension SearchableListViewController: HeadersListControllerDelegate {
 
-    func didSelectItem(at index: Int) {
+    func didSelectItem(at indexPath: IndexPath) {
         if let filteredSections = filteredSections {
-            let selectedItem = filteredSections[0].items[index]
-            let selectedIndex = sections[0].items.firstIndex { (item) -> Bool in
+            let selectedItem = filteredSections[indexPath.section].items[indexPath.row]
+            let selectedIndex = sections[indexPath.section].items.firstIndex { (item) -> Bool in
                 item.key == selectedItem.key && item.value == selectedItem.value
             }
             if let selectedIndex = selectedIndex {
@@ -155,7 +155,7 @@ extension SearchableListViewController: HeadersListControllerDelegate {
                 fatalError()
             }
         } else {
-            delegate?.didSelectItem(at: index)
+            delegate?.didSelectItem(at: indexPath.row)
         }
     }
 }
@@ -164,6 +164,7 @@ extension SearchableListViewController: SearchListControllerDelegate {
     
     func clear() {
         searchString = nil
+        filteredSections = nil
         headersListController.load(sections: sections)
     }
     
