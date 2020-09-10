@@ -102,22 +102,10 @@ class RequestsListCell: UITableViewCell {
     }
     
     private func emphasizeText(_ text: String, label: UILabel, font: UIFont, color: UIColor) {
-        guard let attributedText = label.attributedText?.mutableCopy() as? NSMutableAttributedString else {
+        guard let attributedText = label.attributedText else {
             return
         }
         
-        guard let ranges = attributedText.string.lowercased().ranges(of: text) else {
-            return
-        }
-        
-        for range in ranges.map({ NSRange($0, in: attributedText.string) }) {
-            let fontAttribute = [
-                NSAttributedString.Key.font: font,
-                NSAttributedString.Key.backgroundColor: color
-            ]
-            attributedText.addAttributes(fontAttribute, range: range)
-        }
-        
-        label.attributedText = attributedText
+        label.attributedText = attributedText.emphasizeText(text, color: color, font: font)
     }
 }
