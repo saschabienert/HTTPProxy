@@ -71,7 +71,11 @@ class RequestsListViewController: UIViewController {
             requestModels.append(viewModel)
         }
         
-        let section = SearchableListSection(title: "Requests", items: requestModels)
+        let filterEnabled = filters.contains { (filter) -> Bool in
+            filter.enabled
+        }
+        let totalCount = filterEnabled ? source.count : nil
+        let section = SearchableListSection(items: requestModels, title: "Requests", totalCount: totalCount)
         contentVC.loadSections([section])
     }
 }

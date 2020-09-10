@@ -17,6 +17,24 @@ protocol SearchableListItem {
 struct SearchableListSection {
     let title: String?
     let items: [SearchableListItem]
+    let totalCount: Int?
+    var header: String? {
+        guard let title = title else {
+            return nil
+        }
+        var totalString = ""
+        if let totalCount = totalCount {
+            totalString = " / \(totalCount)"
+        }
+        return title + " (\(items.count)\(totalString))"
+      
+    }
+    
+    init(items: [SearchableListItem], title: String? = nil, totalCount: Int? = nil) {
+        self.title = title
+        self.items = items
+        self.totalCount = totalCount
+    }
 }
 
 protocol RequestDetailsViewInput {
@@ -113,7 +131,7 @@ class SearchableListViewController: UIViewController {
                     filteredItems.append(item)
                 }
             }
-            let sectionCopy = SearchableListSection(title: section.title, items: filteredItems)
+            let sectionCopy = SearchableListSection(items: filteredItems, title: section.title, totalCount: section.items.count)
             filteredSections.append(sectionCopy)
         }
         self.filteredSections = filteredSections
