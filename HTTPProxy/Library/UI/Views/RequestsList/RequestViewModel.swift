@@ -3,7 +3,11 @@ import UIKit
 
 struct RequestViewModel: SearchableListItem {
 
-    let request: HTTPRequest
+    private let request: HTTPRequest
+
+    init(request: HTTPRequest) {
+        self.request = request
+    }
 
     var value: String {
         var urlComponents = URLComponents(url: request.request.url!, resolvingAgainstBaseURL: false)!
