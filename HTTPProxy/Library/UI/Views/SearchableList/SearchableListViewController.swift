@@ -38,6 +38,7 @@ class SearchableListViewController: UIViewController {
     @IBOutlet private var searchBar: UISearchBar!
     @IBOutlet private var button: UIButton!
     @IBOutlet private var buttonView: UIView!
+    @IBOutlet weak var buttonViewLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var tableViewBottomLayoutConstraint: NSLayoutConstraint!
 
     private var headersListController: HeadersListController!
@@ -67,6 +68,7 @@ class SearchableListViewController: UIViewController {
             button.layer.cornerRadius = 8.0
         } else {
             buttonView.isHidden = true
+            buttonViewLayoutConstraint.constant = 0
         }
     }
     

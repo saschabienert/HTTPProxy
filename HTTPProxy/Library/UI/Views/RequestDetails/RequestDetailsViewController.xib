@@ -21,7 +21,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="rbu-QE-fcb">
-                    <rect key="frame" x="8" y="52" width="398" height="51"/>
+                    <rect key="frame" x="10" y="52" width="394" height="51"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="qIR-GU-J7V"/>
@@ -45,10 +45,10 @@
                 <constraint firstItem="wvd-7X-hX8" firstAttribute="trailing" secondItem="lp3-cT-rRs" secondAttribute="trailing" id="11L-Mb-bJ8"/>
                 <constraint firstItem="lp3-cT-rRs" firstAttribute="leading" secondItem="wvd-7X-hX8" secondAttribute="leading" id="7MW-F3-6p5"/>
                 <constraint firstItem="rbu-QE-fcb" firstAttribute="top" secondItem="wvd-7X-hX8" secondAttribute="top" constant="8" id="7RW-5B-nhp"/>
-                <constraint firstItem="wvd-7X-hX8" firstAttribute="trailing" secondItem="rbu-QE-fcb" secondAttribute="trailing" constant="8" id="hN2-P7-TDe"/>
+                <constraint firstItem="wvd-7X-hX8" firstAttribute="trailing" secondItem="rbu-QE-fcb" secondAttribute="trailing" constant="10" id="hN2-P7-TDe"/>
                 <constraint firstItem="wvd-7X-hX8" firstAttribute="bottom" secondItem="lp3-cT-rRs" secondAttribute="bottom" id="hrG-ne-W2i"/>
                 <constraint firstItem="lp3-cT-rRs" firstAttribute="top" secondItem="rbu-QE-fcb" secondAttribute="bottom" constant="8" id="o3v-sN-s1T"/>
-                <constraint firstItem="rbu-QE-fcb" firstAttribute="leading" secondItem="wvd-7X-hX8" secondAttribute="leading" constant="8" id="vwI-y8-59y"/>
+                <constraint firstItem="rbu-QE-fcb" firstAttribute="leading" secondItem="wvd-7X-hX8" secondAttribute="leading" constant="10" id="vwI-y8-59y"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="wvd-7X-hX8"/>
             <point key="canvasLocation" x="139" y="80"/>
