@@ -102,10 +102,11 @@ class RequestsListCell: UITableViewCell {
     }
     
     private func emphasizeText(_ text: String, label: UILabel, font: UIFont, color: UIColor) {
-        guard let attributedText = label.attributedText else {
+        guard let attributedText = label.attributedText,
+            let ranges = attributedText.ranges(of: text) else {
             return
         }
         
-        label.attributedText = attributedText.emphasizeText(text, color: color, font: font)
+        label.attributedText = attributedText.emphasizeText(in: ranges, color: color, font: font)
     }
 }

@@ -2,11 +2,12 @@ import UIKit
 
 extension NSAttributedString {
 
-    func emphasizeText(_ text: String, color: UIColor, font: UIFont? = nil) -> NSAttributedString {
-        guard let ranges = self.string.lowercased().ranges(of: text.lowercased()) else {
-            return self
-        }
-
+    func ranges(of searchString: String) -> [NSRange]? {
+        let str = self.string.lowercased()
+        return str.ranges(of: searchString.lowercased())
+    }
+    
+    func emphasizeText(in ranges: [NSRange], color: UIColor, font: UIFont? = nil) -> NSAttributedString {
         var attrs: [NSAttributedString.Key: Any] = [.backgroundColor: color]
         if font != nil {
             attrs[NSAttributedString.Key.font] = font

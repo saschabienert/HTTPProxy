@@ -7,11 +7,12 @@ class TextViewerViewController: UIViewController {
     @IBOutlet private var toolbar: UIToolbar!
     @IBOutlet private var stepper: UIStepper!
     @IBOutlet private var searchBar: UISearchBar!
+    @IBOutlet private var searchResultsLabel: UILabel!
     
     private var text: String
     private var filename: String
     private var syntaxHighlightedText: NSAttributedString?
-
+    
     init(text: String, filename: String) {
         self.text = text
         self.filename = filename
@@ -25,12 +26,16 @@ class TextViewerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = filename
+        searchResultsLabel.backgroundColor = HTTPProxyUI.colorScheme.foregroundColor
         toolbar.tintColor = HTTPProxyUI.colorScheme.primaryTextColor
         toolbar.barTintColor = HTTPProxyUI.colorScheme.foregroundColor
         stepper.minimumValue = 8
         stepper.maximumValue = 20
         stepper.value = 12
         setFontSize(12)
+        
+        searchResultsLabel.font = UIFont.menlo14
+        clearResultCount()
         
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -59,7 +64,7 @@ class TextViewerViewController: UIViewController {
         activityIndicator.color = HTTPProxyUI.colorScheme.primaryTextColor
         textView.addSubview(activityIndicator)
         activityIndicator.startAnimating()
-
+        
         highlightedText(text) { highlightedText in
             self.syntaxHighlightedText = highlightedText
             DispatchQueue.main.async {
@@ -88,16 +93,48 @@ class TextViewerViewController: UIViewController {
         }
         textView.scrollIndicatorInsets = textView.contentInset
 
-        let selectedRange = textView.selectedRange
-        textView.scrollRangeToVisible(selectedRange)
+        //let selectedRange = textView.selectedRange
+        //textView.scrollRangeToVisible(selectedRange)
     }
     
     private func highlightSearchResults(_ text: String) {
-        guard let syntaxHighlightedText = syntaxHighlightedText else {
-           return
+        guard let attributedString = syntaxHighlightedText else {
+            return
         }
-        let att = syntaxHighlightedText.emphasizeText(text, color: HTTPProxyUI.colorScheme.highlightedTextColor)
-        self.textView.attributedText = att
+        
+        if text.isEmpty {
+            clearResultCount()
+            self.textView.attributedText = attributedString
+            return
+        }
+        
+        guard let ranges = attributedString.ranges(of: text) else {
+            displayResultCount(0)
+            return
+        }
+        
+        displayResultCount(ranges.count)
+        let highlightedText = attributedString.emphasizeText(in: ranges, color: HTTPProxyUI.colorScheme.highlightedTextColor)
+        self.textView.attributedText = highlightedText
+    }
+    
+    private func resultCount(_ count: Int) -> String {
+        switch count {
+        case 0:
+            return "No results"
+        case 1:
+            return "1 result"
+        default:
+            return "\(count) results"
+        }
+    }
+    
+    private func clearResultCount() {
+        searchResultsLabel.text = ""
+    }
+    
+    private func displayResultCount(_ count: Int) {
+        searchResultsLabel.text = resultCount(count)
     }
     
     private func highlightedText(_ text: String, completionHandler: @escaping (NSAttributedString?) -> Void) {
@@ -108,7 +145,7 @@ class TextViewerViewController: UIViewController {
                 let highlightedText = highlightr.highlight(text)
                 completionHandler(highlightedText)
             })
-         }
+        }
     }
     
     @IBAction private func share() {
@@ -120,7 +157,7 @@ class TextViewerViewController: UIViewController {
     @IBAction private func copyText() {
         UIPasteboard.general.string = textView.text
     }
-
+    
     @IBAction private func changeFont(_ sender: UIStepper) {
         setFontSize(sender.value)
     }
