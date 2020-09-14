@@ -16,15 +16,11 @@ extension String {
         var indices = [Int]()
         var position = startIndex
         while let range = range(of: occurrence, range: position..<endIndex) {
-            let dist = distance(from: startIndex,
-                             to: range.lowerBound)
+            let dist = distance(from: startIndex, to: range.lowerBound)
             indices.append(dist)
-            let offset = occurrence.distance(from: occurrence.startIndex,
-                                             to: occurrence.endIndex) - 1
-            guard let after = index(range.lowerBound,
-                                    offsetBy: offset,
-                                    limitedBy: endIndex) else {
-                                        break
+            let offset = occurrence.distance(from: occurrence.startIndex, to: occurrence.endIndex) - 1
+            guard let after = index(range.lowerBound, offsetBy: offset, limitedBy: endIndex) else {
+                break
             }
             position = index(after: after)
         }
