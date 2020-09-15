@@ -1,6 +1,12 @@
 import Highlightr
 import UIKit
 
+struct FontSize {
+    static let minimun = 8.0
+    static let initial = 14.0
+    static let maximum = 20.0
+}
+
 class TextViewerViewController: UIViewController {
 
     @IBOutlet private var textView: UITextView!
@@ -29,10 +35,9 @@ class TextViewerViewController: UIViewController {
         searchResultsLabel.backgroundColor = HTTPProxyUI.colorScheme.foregroundColor
         toolbar.tintColor = HTTPProxyUI.colorScheme.primaryTextColor
         toolbar.barTintColor = HTTPProxyUI.colorScheme.foregroundColor
-        stepper.minimumValue = 8
-        stepper.maximumValue = 20
-        stepper.value = 12
-        setFontSize(12)
+        stepper.minimumValue = FontSize.minimun
+        stepper.maximumValue = FontSize.maximum
+        stepper.value = FontSize.initial
         
         searchResultsLabel.font = UIFont.menlo14
         clearResultCount()
@@ -69,6 +74,7 @@ class TextViewerViewController: UIViewController {
             self.syntaxHighlightedText = highlightedText
             DispatchQueue.main.async {
                 self.textView.attributedText = highlightedText
+                self.setFontSize(FontSize.initial)
                 activityIndicator.stopAnimating()
                 activityIndicator.removeFromSuperview()
             }
@@ -104,7 +110,7 @@ class TextViewerViewController: UIViewController {
         
         if text.isEmpty {
             clearResultCount()
-            self.textView.attributedText = attributedString
+            setText(text: attributedString)
             return
         }
         
@@ -115,7 +121,13 @@ class TextViewerViewController: UIViewController {
         
         displayResultCount(ranges.count)
         let highlightedText = attributedString.emphasizeText(in: ranges, color: HTTPProxyUI.colorScheme.highlightedTextColor)
-        self.textView.attributedText = highlightedText
+        setText(text: highlightedText)
+    }
+    
+    func setText(text: NSAttributedString) {
+        let font = textView.font
+        textView.attributedText = text
+        textView.font = font
     }
     
     private func resultCount(_ count: Int) -> String {
@@ -163,7 +175,11 @@ class TextViewerViewController: UIViewController {
     }
     
     private func setFontSize(_ size: Double) {
-        textView.font = UIFont(name: "Menlo", size: CGFloat(size))
+        guard let font = textView.font else {
+            return
+        }
+        let newFont = font.withSize(CGFloat(size))
+        textView.font = newFont
     }
 }
 
