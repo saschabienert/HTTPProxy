@@ -94,13 +94,13 @@ class TextViewerViewController: UIViewController {
             if #available(iOS 11.0, *) {
                 bottomInset -= view.safeAreaInsets.bottom
             }
+            if let superviewHeight = textView.superview?.frame.size.height {
+                let bottomSpacing = superviewHeight - (textView.frame.height + textView.frame.origin.y)
+                bottomInset -= bottomSpacing
+            }
             textView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: bottomInset, right: 0)
-
         }
         textView.scrollIndicatorInsets = textView.contentInset
-
-        //let selectedRange = textView.selectedRange
-        //textView.scrollRangeToVisible(selectedRange)
     }
     
     private func highlightSearchResults(_ text: String) {
@@ -116,6 +116,7 @@ class TextViewerViewController: UIViewController {
         
         guard let ranges = attributedString.ranges(of: text) else {
             displayResultCount(0)
+            setText(text: attributedString)
             return
         }
         
