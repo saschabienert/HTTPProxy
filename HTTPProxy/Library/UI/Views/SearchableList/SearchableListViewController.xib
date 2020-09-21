@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,10 +11,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchableListViewController" customModule="HTTPProxy" customModuleProvider="target">
             <connections>
                 <outlet property="button" destination="8fI-L5-ZWa" id="In0-N2-nv3"/>
-                <outlet property="buttonView" destination="fMP-vC-8o3" id="OEy-n3-EN4"/>
-                <outlet property="searchBar" destination="2VS-UJ-NkF" id="rcj-sp-EFJ"/>
+                <outlet property="buttonView" destination="3dS-p7-mcd" id="1Dw-kF-OM6"/>
+                <outlet property="buttonViewLayoutConstraint" destination="IMs-Fv-hfW" id="2ad-ic-FoM"/>
+                <outlet property="searchBar" destination="kq7-c8-tBU" id="glo-bO-ede"/>
                 <outlet property="tableView" destination="kPF-K9-i3d" id="eyF-dv-OAC"/>
-                <outlet property="tableViewBottomLayoutConstraint" destination="rOG-Me-mBU" id="Xal-Gd-x9d"/>
+                <outlet property="tableViewBottomLayoutConstraint" destination="OfP-2a-UiE" id="goM-nn-DO6"/>
                 <outlet property="view" destination="6KL-5r-EnA" id="Bz0-iR-az0"/>
             </connections>
         </placeholder>
@@ -23,41 +24,50 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="GPn-ne-QeJ">
-                    <rect key="frame" x="15" y="44" width="384" height="818"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3dS-p7-mcd">
+                    <rect key="frame" x="0.0" y="44" width="414" height="65"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="fMP-vC-8o3">
-                            <rect key="frame" x="0.0" y="0.0" width="384" height="109"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fI-L5-ZWa">
-                                    <rect key="frame" x="10" y="15" width="364" height="74"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <state key="normal" title="Button"/>
-                                </button>
-                            </subviews>
-                            <edgeInsets key="layoutMargins" top="15" left="10" bottom="20" right="10"/>
-                        </stackView>
-                        <searchBar contentMode="redraw" searchBarStyle="minimal" id="2VS-UJ-NkF">
-                            <rect key="frame" x="0.0" y="109" width="384" height="56"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fI-L5-ZWa">
+                            <rect key="frame" x="8" y="17.5" width="398" height="30"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <textInputTraits key="textInputTraits" returnKeyType="search"/>
-                        </searchBar>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kPF-K9-i3d">
-                            <rect key="frame" x="0.0" y="165" width="384" height="653"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </tableView>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="fd7-0p-unB"/>
+                            </constraints>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" title="Button"/>
+                        </button>
                     </subviews>
-                </stackView>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="65" id="IMs-Fv-hfW"/>
+                        <constraint firstItem="8fI-L5-ZWa" firstAttribute="centerX" secondItem="3dS-p7-mcd" secondAttribute="centerX" id="Ows-aa-oQY"/>
+                        <constraint firstItem="8fI-L5-ZWa" firstAttribute="leading" secondItem="3dS-p7-mcd" secondAttribute="leading" constant="8" id="j5L-AS-MSe"/>
+                        <constraint firstAttribute="trailing" secondItem="8fI-L5-ZWa" secondAttribute="trailing" constant="8" id="jnq-tA-sdR"/>
+                        <constraint firstItem="8fI-L5-ZWa" firstAttribute="centerY" secondItem="3dS-p7-mcd" secondAttribute="centerY" id="xlX-x3-JYC"/>
+                    </constraints>
+                </view>
+                <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="kq7-c8-tBU">
+                    <rect key="frame" x="2" y="109" width="410" height="56"/>
+                    <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                </searchBar>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kPF-K9-i3d">
+                    <rect key="frame" x="10" y="165" width="394" height="687"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="GPn-ne-QeJ" firstAttribute="top" secondItem="hmU-1O-1oE" secondAttribute="top" id="6sj-t4-l4K"/>
-                <constraint firstItem="hmU-1O-1oE" firstAttribute="trailing" secondItem="GPn-ne-QeJ" secondAttribute="trailing" constant="15" id="oYl-AF-qMG"/>
-                <constraint firstItem="hmU-1O-1oE" firstAttribute="bottom" secondItem="GPn-ne-QeJ" secondAttribute="bottom" id="rOG-Me-mBU"/>
-                <constraint firstItem="GPn-ne-QeJ" firstAttribute="leading" secondItem="hmU-1O-1oE" secondAttribute="leading" constant="15" id="rr4-SP-oJQ"/>
+                <constraint firstItem="kq7-c8-tBU" firstAttribute="top" secondItem="3dS-p7-mcd" secondAttribute="bottom" id="CHc-pE-aon"/>
+                <constraint firstItem="kPF-K9-i3d" firstAttribute="trailing" secondItem="hmU-1O-1oE" secondAttribute="trailing" constant="-10" id="DyC-19-qdD"/>
+                <constraint firstItem="hmU-1O-1oE" firstAttribute="trailing" secondItem="kq7-c8-tBU" secondAttribute="trailing" constant="2" id="NuJ-7h-37T"/>
+                <constraint firstItem="hmU-1O-1oE" firstAttribute="bottom" secondItem="kPF-K9-i3d" secondAttribute="bottom" constant="10" id="OfP-2a-UiE"/>
+                <constraint firstItem="hmU-1O-1oE" firstAttribute="trailing" secondItem="3dS-p7-mcd" secondAttribute="trailing" id="emG-mi-45u"/>
+                <constraint firstItem="3dS-p7-mcd" firstAttribute="leading" secondItem="hmU-1O-1oE" secondAttribute="leading" id="hgH-Kw-fIi"/>
+                <constraint firstItem="3dS-p7-mcd" firstAttribute="top" secondItem="hmU-1O-1oE" secondAttribute="top" id="inF-44-1nk"/>
+                <constraint firstItem="kPF-K9-i3d" firstAttribute="leading" secondItem="hmU-1O-1oE" secondAttribute="leading" constant="10" id="vaP-cA-YIt"/>
+                <constraint firstItem="kPF-K9-i3d" firstAttribute="top" secondItem="kq7-c8-tBU" secondAttribute="bottom" id="xS3-Is-3UM"/>
+                <constraint firstItem="kq7-c8-tBU" firstAttribute="leading" secondItem="hmU-1O-1oE" secondAttribute="leading" constant="2" id="zKm-ij-upI"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="hmU-1O-1oE"/>
             <point key="canvasLocation" x="137.68115942028987" y="105.80357142857143"/>

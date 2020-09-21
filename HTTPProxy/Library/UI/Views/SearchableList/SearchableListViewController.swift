@@ -17,6 +17,24 @@ protocol SearchableListItem {
 struct SearchableListSection {
     let title: String?
     let items: [SearchableListItem]
+    let totalCount: Int?
+    var header: String? {
+        guard let title = title else {
+            return nil
+        }
+        var totalString = ""
+        if let totalCount = totalCount {
+            totalString = " / \(totalCount)"
+        }
+        return title + " (\(items.count)\(totalString))"
+      
+    }
+    
+    init(items: [SearchableListItem], title: String? = nil, totalCount: Int? = nil) {
+        self.title = title
+        self.items = items
+        self.totalCount = totalCount
+    }
 }
 
 protocol RequestDetailsViewInput {
@@ -38,6 +56,7 @@ class SearchableListViewController: UIViewController {
     @IBOutlet private var searchBar: UISearchBar!
     @IBOutlet private var button: UIButton!
     @IBOutlet private var buttonView: UIView!
+    @IBOutlet weak var buttonViewLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var tableViewBottomLayoutConstraint: NSLayoutConstraint!
 
     private var headersListController: HeadersListController!
@@ -67,6 +86,7 @@ class SearchableListViewController: UIViewController {
             button.layer.cornerRadius = 8.0
         } else {
             buttonView.isHidden = true
+            buttonViewLayoutConstraint.constant = 0
         }
     }
     
@@ -111,7 +131,7 @@ class SearchableListViewController: UIViewController {
                     filteredItems.append(item)
                 }
             }
-            let sectionCopy = SearchableListSection(title: section.title, items: filteredItems)
+            let sectionCopy = SearchableListSection(items: filteredItems, title: section.title, totalCount: section.items.count)
             filteredSections.append(sectionCopy)
         }
         self.filteredSections = filteredSections

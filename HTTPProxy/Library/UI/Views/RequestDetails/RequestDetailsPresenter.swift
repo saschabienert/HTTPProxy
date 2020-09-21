@@ -108,7 +108,7 @@ private struct Summary {
             requestFields.append(item)
         }
         
-        let section = SearchableListSection(title: nil, items: requestFields)
+        let section = SearchableListSection(items: requestFields)
         return [section]
     }
 }
@@ -153,8 +153,8 @@ private struct Request {
             }
         }
         
-        let headersSection = SearchableListSection(title: "Request Headers", items: sortedHeaders)
-        let paramsSection = SearchableListSection(title: "Query parameters", items: parameters)
+        let headersSection = SearchableListSection(items: sortedHeaders, title: "Request Headers")
+        let paramsSection = SearchableListSection(items: parameters, title: "Query parameters")
         viewController.sections = [headersSection, paramsSection]
         return viewController
     }
@@ -171,7 +171,7 @@ private struct Response {
     func requestController(httpRequest: HTTPRequest) -> SearchableListViewController {
         let viewController = SearchableListViewController(nibName: "SearchableListViewController", bundle: HTTPProxyUI.bundle)
         let headers = sortedHeaders(httpRequest: httpRequest) ?? []
-        let paramsSection = SearchableListSection(title: "Response Headers", items: headers)
+        let paramsSection = SearchableListSection(items: headers, title: "Response Headers")
         viewController.sections = [paramsSection]
         
         if canShowResponse(httpRequest: httpRequest) {

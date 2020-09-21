@@ -25,7 +25,7 @@ public struct RequestFilter {
     public var headerFields: [KeyValuePair]?
     
     public init(httpMethod: String? = nil, scheme: String? = nil, host: String? = nil, port: Int? = nil,
-         queryItems: [KeyValuePair]? = nil, headerFields: [KeyValuePair]? = nil) {
+                queryItems: [KeyValuePair]? = nil, headerFields: [KeyValuePair]? = nil) {
         self.httpMethod = httpMethod
         self.scheme = scheme
         self.host = host

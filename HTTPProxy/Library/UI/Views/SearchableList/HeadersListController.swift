@@ -77,19 +77,21 @@ extension HeadersListDataSource: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if let title = sections[section].title {
-            return title + " (\(sections[section].items.count))"
-        }
-        return nil
+        return sections[section].header
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let style: UIBlurEffect.Style = HTTPProxyUI.darkModeEnabled() ? .dark : .extraLight
+        let blurEffect = UIBlurEffect(style: style)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.alpha = 0.8
+        let header = view as! UITableViewHeaderFooterView
+        header.backgroundView = blurView
     }
 }
 
 extension HeadersListDataSource: UITableViewDelegate {
 
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return nil
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate?.didSelectItem(at: indexPath)
     }

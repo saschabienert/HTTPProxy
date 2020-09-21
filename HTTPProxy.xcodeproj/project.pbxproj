@@ -13,6 +13,8 @@
 		80093AF124892FA8000AD359 /* RequestsListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80093AF024892FA8000AD359 /* RequestsListViewController.storyboard */; };
 		801453032493AC0D003DE46E /* CollectionViewCenterLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80093AEE24887DB9000AD359 /* CollectionViewCenterLayout.swift */; };
 		801453052493AC4A003DE46E /* StringSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801453042493AC4A003DE46E /* StringSpec.swift */; };
+		8020256B250AA666009A4BAB /* NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8020256A250AA666009A4BAB /* NSAttributedString.swift */; };
+		8020256D250AA7F7009A4BAB /* NSString_RangesSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8020256C250AA7F7009A4BAB /* NSString_RangesSpec.swift */; };
 		8028414B24C61BAC00340D23 /* SelectableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8028414A24C61BAC00340D23 /* SelectableLabel.swift */; };
 		806E1AB02427948D005D7E24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E1AAF2427948D005D7E24 /* AppDelegate.swift */; };
 		806E1AB22427948D005D7E24 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E1AB12427948D005D7E24 /* ViewController.swift */; };
@@ -95,6 +97,8 @@
 		80093AEE24887DB9000AD359 /* CollectionViewCenterLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCenterLayout.swift; sourceTree = "<group>"; };
 		80093AF024892FA8000AD359 /* RequestsListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RequestsListViewController.storyboard; sourceTree = "<group>"; };
 		801453042493AC4A003DE46E /* StringSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringSpec.swift; sourceTree = "<group>"; };
+		8020256A250AA666009A4BAB /* NSAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedString.swift; sourceTree = "<group>"; };
+		8020256C250AA7F7009A4BAB /* NSString_RangesSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSString_RangesSpec.swift; sourceTree = "<group>"; };
 		8028414A24C61BAC00340D23 /* SelectableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableLabel.swift; sourceTree = "<group>"; };
 		806E1AAC2427948D005D7E24 /* HTTPProxy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HTTPProxy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		806E1AAF2427948D005D7E24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -227,6 +231,7 @@
 				806E1AC62427948F005D7E24 /* Info.plist */,
 				80CF4B13248A9E4A00756F51 /* RequestListFilterSpec.swift */,
 				801453042493AC4A003DE46E /* StringSpec.swift */,
+				8020256C250AA7F7009A4BAB /* NSString_RangesSpec.swift */,
 			);
 			path = HTTPProxyTests;
 			sourceTree = "<group>";
@@ -279,12 +284,13 @@
 			children = (
 				80093AEE24887DB9000AD359 /* CollectionViewCenterLayout.swift */,
 				80EF1E5B242798140016D0A2 /* Data.swift */,
+				8020256A250AA666009A4BAB /* NSAttributedString.swift */,
 				80093AEC24881BCB000AD359 /* RoundedView.swift */,
+				8028414A24C61BAC00340D23 /* SelectableLabel.swift */,
 				80EF1E5F242798140016D0A2 /* String.swift */,
 				80EF1E5C242798140016D0A2 /* UIColor.swift */,
 				80EF1E60242798140016D0A2 /* UIFont.swift */,
 				80EF1E61242798140016D0A2 /* UIWindow+ShakeGesture.swift */,
-				8028414A24C61BAC00340D23 /* SelectableLabel.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -623,6 +629,7 @@
 				80093AED24881BCB000AD359 /* RoundedView.swift in Sources */,
 				80EF1E94242798140016D0A2 /* RequestDetailsPresenter.swift in Sources */,
 				80EF1E8B242798140016D0A2 /* String.swift in Sources */,
+				8020256B250AA666009A4BAB /* NSAttributedString.swift in Sources */,
 				80093AEB24881A42000AD359 /* HTTPProxyFilter.swift in Sources */,
 				80C632F6248BB0DA00B36353 /* EditFilterViewController.swift in Sources */,
 				80EF1EA8242798140016D0A2 /* HTTPProxyRequestInterceptorDelegate.swift in Sources */,
@@ -638,6 +645,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				806E1AC52427948F005D7E24 /* HTTPProxyTests.swift in Sources */,
+				8020256D250AA7F7009A4BAB /* NSString_RangesSpec.swift in Sources */,
 				801453052493AC4A003DE46E /* StringSpec.swift in Sources */,
 				80CF4B14248A9E4A00756F51 /* RequestListFilterSpec.swift in Sources */,
 			);
