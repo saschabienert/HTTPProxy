@@ -1,7 +1,7 @@
 PODS:
   - Highlightr (2.1.0)
-  - Nimble (8.0.5)
-  - Quick (2.2.0)
+  - Nimble (8.1.2)
+  - Quick (3.0.0)
 
 DEPENDENCIES:
   - Highlightr
@@ -16,8 +16,8 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Highlightr: 595f3e100737c8de41113385da8bd0b5b65212c6
-  Nimble: 4ab1aeb9b45553c75b9687196b0fa0713170a332
-  Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e
+  Nimble: 3864815b4703c7ebffba875973c70e854489fbae
+  Quick: 6d9559f40647bc4d510103842ef2fdd882d753e2
 
 PODFILE CHECKSUM: 24d7c4518c7eb3cf4d2cf7931c162e448e904ece
 
