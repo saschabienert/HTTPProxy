@@ -6,11 +6,7 @@
 //
 //
 
-import Foundation
-
-#if os(OSX)
-    import AppKit
-#endif
+import UIKit
 
 /// Highlighting Delegate
 @objc public protocol HighlightDelegate

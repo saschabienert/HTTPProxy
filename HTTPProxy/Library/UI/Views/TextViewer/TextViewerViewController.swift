@@ -1,4 +1,3 @@
-import Highlightr
 import UIKit
 
 struct FontSize {

@@ -2,6 +2,7 @@ excluded:
   - "Pods"
   - "HTTPProxyTests"
   - "HTTPProxyUITests"
+  - "HTTPProxy/Library/Highlightr"
 disabled_rules:
   - "trailing_whitespace"
   - "force_cast"
