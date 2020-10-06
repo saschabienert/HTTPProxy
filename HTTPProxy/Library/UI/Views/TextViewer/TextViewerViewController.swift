@@ -1,11 +1,5 @@
 import UIKit
 
-struct FontSize {
-    static let minimun = 8.0
-    static let initial = 14.0
-    static let maximum = 20.0
-}
-
 class TextViewerViewController: UIViewController {
 
     @IBOutlet private var textView: UITextView!
@@ -13,14 +7,11 @@ class TextViewerViewController: UIViewController {
     @IBOutlet private var stepper: UIStepper!
     @IBOutlet private var searchBar: UISearchBar!
     @IBOutlet private var searchResultsLabel: UILabel!
-    
-    private var text: String
-    private var filename: String
-    private var syntaxHighlightedText: NSAttributedString?
+    private var activityIndicator: UIActivityIndicatorView!
+    private let viewModel: TextViewerViewModel
     
     init(text: String, filename: String) {
-        self.text = text
-        self.filename = filename
+        viewModel = TextViewerViewModel(text: text, filename: filename)
         super.init(nibName: String(describing: TextViewerViewController.self), bundle: HTTPProxyUI.bundle)
     }
     
@@ -30,13 +21,13 @@ class TextViewerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = filename
+        navigationItem.title = viewModel.filename
         searchResultsLabel.backgroundColor = HTTPProxyUI.colorScheme.foregroundColor
         toolbar.tintColor = HTTPProxyUI.colorScheme.primaryTextColor
         toolbar.barTintColor = HTTPProxyUI.colorScheme.foregroundColor
-        stepper.minimumValue = FontSize.minimun
-        stepper.maximumValue = FontSize.maximum
-        stepper.value = FontSize.initial
+        stepper.minimumValue = viewModel.minimunFontSize
+        stepper.maximumValue = viewModel.maximunFontSize
+        stepper.value = viewModel.currentFontSize
         
         searchResultsLabel.font = UIFont.menlo14
         clearResultCount()
@@ -56,31 +47,48 @@ class TextViewerViewController: UIViewController {
             let attributes = [NSAttributedString.Key.foregroundColor: HTTPProxyUI.colorScheme.primaryTextColor]
             UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = attributes
         }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         
-        let activityIndicator = UIActivityIndicatorView(frame: textView.frame)
+        activityIndicator = UIActivityIndicatorView(frame: textView.frame)
         if #available(iOS 13.0, *) {
             activityIndicator.style = .large
         }
         activityIndicator.color = HTTPProxyUI.colorScheme.primaryTextColor
         textView.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
         
-        highlightedText(text) { highlightedText in
-            self.syntaxHighlightedText = highlightedText
+        setupBindings()
+    }
+    
+    func setupBindings() {
+        viewModel.isProcessing.bind { [weak self] (isProcessing) in
             DispatchQueue.main.async {
-                self.textView.attributedText = highlightedText
-                self.setFontSize(FontSize.initial)
-                activityIndicator.stopAnimating()
-                activityIndicator.removeFromSuperview()
+                if isProcessing {
+                    self?.activityIndicator.startAnimating()
+                } else {
+                    self?.activityIndicator.stopAnimating()
+                }
+            }
+        }
+        
+        viewModel.syntaxHighlightedText.bind { [weak self] (string) in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.textView.attributedText = string
+                self.setFontSize(self.viewModel.currentFontSize)
+            }
+        }
+        
+        viewModel.searchResultsCount.bind { [weak self] (count) in
+            DispatchQueue.main.async {
+                if let count = count {
+                    self?.displayResultCount(count)
+                } else {
+                    self?.clearResultCount()
+                }
             }
         }
     }
     
-    @objc func adjustForKeyboard(notification: Notification) {
+    @objc private func adjustForKeyboard(notification: Notification) {
         guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
 
         let keyboardScreenEndFrame = keyboardValue.cgRectValue
@@ -101,30 +109,8 @@ class TextViewerViewController: UIViewController {
         }
         textView.scrollIndicatorInsets = textView.contentInset
     }
-    
-    private func highlightSearchResults(_ text: String) {
-        guard let attributedString = syntaxHighlightedText else {
-            return
-        }
-        
-        if text.isEmpty {
-            clearResultCount()
-            setText(text: attributedString)
-            return
-        }
-        
-        guard let ranges = attributedString.ranges(of: text) else {
-            displayResultCount(0)
-            setText(text: attributedString)
-            return
-        }
-        
-        displayResultCount(ranges.count)
-        let highlightedText = attributedString.emphasizeText(in: ranges, color: HTTPProxyUI.colorScheme.highlightedTextColor)
-        setText(text: highlightedText)
-    }
-    
-    func setText(text: NSAttributedString) {
+
+    private func setText(text: NSAttributedString) {
         let font = textView.font
         textView.attributedText = text
         textView.font = font
@@ -149,17 +135,6 @@ class TextViewerViewController: UIViewController {
         searchResultsLabel.text = resultCount(count)
     }
     
-    private func highlightedText(_ text: String, completionHandler: @escaping (NSAttributedString?) -> Void) {
-        if let highlightr = Highlightr() {
-            let theme = HTTPProxyUI.darkModeEnabled() ? "atom-one-dark" : "atom-one-light"
-            highlightr.setTheme(to: theme)
-            DispatchQueue.global().asyncAfter(deadline: .now() + 0.1, execute: {
-                let highlightedText = highlightr.highlight(text)
-                completionHandler(highlightedText)
-            })
-        }
-    }
-    
     @IBAction private func share() {
         let activityItems = [textView.text]
         let activityController = UIActivityViewController(activityItems: activityItems as [Any], applicationActivities: nil)
@@ -178,6 +153,7 @@ class TextViewerViewController: UIViewController {
         guard let font = textView.font else {
             return
         }
+        viewModel.currentFontSize = size
         let newFont = font.withSize(CGFloat(size))
         textView.font = newFont
     }
@@ -186,6 +162,6 @@ class TextViewerViewController: UIViewController {
 extension TextViewerViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        highlightSearchResults(searchText)
+        viewModel.highlightSearchResults(searchText)
     }
 }
