@@ -1,4 +1,5 @@
 import Foundation
+import UIKit.UIColor
 
 private struct FontSize {
     static let minimum = 8.0
@@ -12,17 +13,21 @@ class TextViewerViewModel {
     let maximunFontSize = FontSize.maximum
     var currentFontSize = FontSize.initial
     
-    private(set) var text: String
-    private(set) var filename: String
+    let text: String
+    let filename: String
+    let highlightedTextColor: UIColor
+    
     let isProcessing = Observable<Bool>(false)
     let syntaxHighlightedText: Observable<NSAttributedString>
-    private(set) var searchResultsCount: Observable<Int?>
+    let searchResultsCount: Observable<Int?>
+
     private var searchWorkItem: DispatchWorkItem?
     private var originalHighlightedText: NSAttributedString?
 
-    init(text: String, filename: String) {
+    init(text: String, filename: String, highlightedTextColor: UIColor) {
         self.text = text
         self.filename = filename
+        self.highlightedTextColor = highlightedTextColor
         let string = NSAttributedString(string: text)
         syntaxHighlightedText = Observable(string)
         searchResultsCount = Observable(nil)
@@ -46,14 +51,11 @@ class TextViewerViewModel {
     }
     
     func highlightSearchResults(_ text: String) {
-
         guard let attributedString = originalHighlightedText else {
             return
         }
         
         isProcessing.value = true
-
-        NSLog("cancelling")
         searchWorkItem?.cancel()
         
         if text.isEmpty {
@@ -63,12 +65,10 @@ class TextViewerViewModel {
             return
         }
         
+        let color = self.highlightedTextColor
         let requestWorkItem = DispatchWorkItem { [weak self] in
-            NSLog("starting search \(text)")
-            self?.highlight(text, in: attributedString) { [weak self] (string, count) in
-                NSLog("completed search \(text)")
+            attributedString.highlight(text, highlightedTextColor: color) { (string, count) in
                 DispatchQueue.main.async {
-                    NSLog("return search \(text)")
                     self?.syntaxHighlightedText.value = string
                     self?.searchResultsCount.value = count
                     self?.isProcessing.value = false
@@ -76,21 +76,22 @@ class TextViewerViewModel {
             }
         }
         
-        NSLog("queuing search \(text)")
         searchWorkItem = requestWorkItem
-        DispatchQueue.global(qos: .userInteractive).asyncAfter(deadline: .now() + .milliseconds(500), execute: requestWorkItem)
+        DispatchQueue
+            .global(qos: .userInteractive)
+            .asyncAfter(deadline: .now() + .milliseconds(500), execute: requestWorkItem)
     }
     
-    private func highlight(_ text: String, in string: NSAttributedString, completion: @escaping (NSAttributedString, Int) -> Void) {
-        NSLog("highlight \(text)")
+}
 
-        DispatchQueue.global().async {
-            guard let ranges = string.ranges(of: text) else {
-                completion(string, 0)
-                return
-            }
-            let highlightedText = string.emphasizeText(in: ranges, color: HTTPProxyUI.colorScheme.highlightedTextColor)
-            completion(highlightedText, ranges.count)
+extension NSAttributedString {
+    
+    func highlight(_ text: String, highlightedTextColor: UIColor, completion: @escaping (NSAttributedString, Int) -> Void) {
+        guard let ranges = self.ranges(of: text) else {
+            completion(self, 0)
+            return
         }
+        let highlightedText = self.emphasizeText(in: ranges, color: highlightedTextColor)
+        completion(highlightedText, ranges.count)
     }
 }

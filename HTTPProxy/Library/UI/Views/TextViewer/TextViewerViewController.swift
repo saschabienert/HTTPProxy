@@ -11,7 +11,9 @@ class TextViewerViewController: UIViewController {
     private let viewModel: TextViewerViewModel
     
     init(text: String, filename: String) {
-        viewModel = TextViewerViewModel(text: text, filename: filename)
+        viewModel = TextViewerViewModel(
+            text: text, filename: filename,
+            highlightedTextColor: HTTPProxyUI.colorScheme.highlightedTextColor)
         super.init(nibName: String(describing: TextViewerViewController.self), bundle: HTTPProxyUI.bundle)
     }
     
