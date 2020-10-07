@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TextViewerViewController" customModule="HTTPProxy" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="6xI-8x-UVI" id="M14-HO-LZr"/>
                 <outlet property="searchBar" destination="xJS-ry-qqP" id="X8L-GI-QZP"/>
                 <outlet property="searchResultsLabel" destination="C8W-vV-Rpw" id="8bc-9D-GAa"/>
                 <outlet property="stepper" destination="Zb1-cE-zkJ" id="FRV-xv-bcu"/>
@@ -87,11 +88,16 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </stackView>
+                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="6xI-8x-UVI">
+                            <rect key="frame" x="169" y="315" width="37" height="37"/>
+                        </activityIndicatorView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="I4Z-Lc-BgD" firstAttribute="top" secondItem="JGA-Fl-uIJ" secondAttribute="top" id="FJB-Bf-fec"/>
+                        <constraint firstItem="6xI-8x-UVI" firstAttribute="centerY" secondItem="JGA-Fl-uIJ" secondAttribute="centerY" id="G0b-Cn-T1f"/>
                         <constraint firstAttribute="bottom" secondItem="I4Z-Lc-BgD" secondAttribute="bottom" id="YoJ-OK-Cpf"/>
+                        <constraint firstItem="6xI-8x-UVI" firstAttribute="centerX" secondItem="JGA-Fl-uIJ" secondAttribute="centerX" id="cEl-IJ-bqP"/>
                         <constraint firstAttribute="trailing" secondItem="I4Z-Lc-BgD" secondAttribute="trailing" id="nHk-Mk-qfd"/>
                         <constraint firstItem="I4Z-Lc-BgD" firstAttribute="leading" secondItem="JGA-Fl-uIJ" secondAttribute="leading" id="siH-3o-Ij2"/>
                     </constraints>

@@ -7,12 +7,13 @@ class TextViewerViewController: UIViewController {
     @IBOutlet private var stepper: UIStepper!
     @IBOutlet private var searchBar: UISearchBar!
     @IBOutlet private var searchResultsLabel: UILabel!
-    private var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet private var activityIndicator: UIActivityIndicatorView!
     private let viewModel: TextViewerViewModel
     
     init(text: String, filename: String) {
         viewModel = TextViewerViewModel(
-            text: text, filename: filename,
+            text: text,
+            filename: filename,
             highlightedTextColor: HTTPProxyUI.colorScheme.highlightedTextColor)
         super.init(nibName: String(describing: TextViewerViewController.self), bundle: HTTPProxyUI.bundle)
     }
@@ -27,8 +28,8 @@ class TextViewerViewController: UIViewController {
         searchResultsLabel.backgroundColor = HTTPProxyUI.colorScheme.foregroundColor
         toolbar.tintColor = HTTPProxyUI.colorScheme.primaryTextColor
         toolbar.barTintColor = HTTPProxyUI.colorScheme.foregroundColor
-        stepper.minimumValue = viewModel.minimunFontSize
-        stepper.maximumValue = viewModel.maximunFontSize
+        stepper.minimumValue = viewModel.minimumFontSize
+        stepper.maximumValue = viewModel.maximumFontSize
         stepper.value = viewModel.currentFontSize
         
         searchResultsLabel.font = UIFont.menlo14
@@ -49,19 +50,15 @@ class TextViewerViewController: UIViewController {
             let attributes = [NSAttributedString.Key.foregroundColor: HTTPProxyUI.colorScheme.primaryTextColor]
             UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = attributes
         }
-        
-        activityIndicator = UIActivityIndicatorView(frame: textView.frame)
-        if #available(iOS 13.0, *) {
-            activityIndicator.style = .large
-        }
+
         activityIndicator.color = HTTPProxyUI.colorScheme.primaryTextColor
-        textView.addSubview(activityIndicator)
-        
+
         setupBindings()
     }
-    
+
     func setupBindings() {
         viewModel.isProcessing.bind { [weak self] (isProcessing) in
+            NSLog("\(isProcessing)")
             DispatchQueue.main.async {
                 if isProcessing {
                     self?.activityIndicator.startAnimating()
@@ -71,7 +68,7 @@ class TextViewerViewController: UIViewController {
             }
         }
         
-        viewModel.syntaxHighlightedText.bind { [weak self] (string) in
+        viewModel.attributedText.bind { [weak self] (string) in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 self.textView.attributedText = string

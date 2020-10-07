@@ -9,8 +9,8 @@ private struct FontSize {
 
 class TextViewerViewModel {
 
-    let minimunFontSize = FontSize.minimum
-    let maximunFontSize = FontSize.maximum
+    let minimumFontSize = FontSize.minimum
+    let maximumFontSize = FontSize.maximum
     var currentFontSize = FontSize.initial
     
     let text: String
@@ -18,32 +18,33 @@ class TextViewerViewModel {
     let highlightedTextColor: UIColor
     
     let isProcessing = Observable<Bool>(false)
-    let syntaxHighlightedText: Observable<NSAttributedString>
+    let attributedText: Observable<NSAttributedString>
     let searchResultsCount: Observable<Int?>
 
     private var searchWorkItem: DispatchWorkItem?
     private var originalHighlightedText: NSAttributedString?
+    private let backgroundQueue = DispatchQueue.global(qos: .userInteractive)
 
     init(text: String, filename: String, highlightedTextColor: UIColor) {
         self.text = text
         self.filename = filename
         self.highlightedTextColor = highlightedTextColor
         let string = NSAttributedString(string: text)
-        syntaxHighlightedText = Observable(string)
+        attributedText = Observable(string)
         searchResultsCount = Observable(nil)
         highlightText()
     }
     
     private func highlightText() {
-        guard let highlightr = Highlightr() else {
-            return
-        }
-        isProcessing.value = true
-        let theme = HTTPProxyUI.darkModeEnabled() ? "atom-one-dark" : "atom-one-light"
-        highlightr.setTheme(to: theme)
-        DispatchQueue.global(qos: .userInteractive).async {
+        backgroundQueue.async {
+            guard let highlightr = Highlightr() else {
+                return
+            }
+            self.isProcessing.value = true
+            let theme = HTTPProxyUI.darkModeEnabled() ? "atom-one-dark" : "atom-one-light"
+            highlightr.setTheme(to: theme)
             if let highlightedText = highlightr.highlight(self.text) {
-                self.syntaxHighlightedText.value = highlightedText
+                self.attributedText.value = highlightedText
                 self.originalHighlightedText = highlightedText
             }
             self.isProcessing.value = false
@@ -59,7 +60,7 @@ class TextViewerViewModel {
         searchWorkItem?.cancel()
         
         if text.isEmpty {
-            syntaxHighlightedText.value = attributedString
+            attributedText.value = attributedString
             searchResultsCount.value = nil
             isProcessing.value = false
             return
@@ -69,7 +70,7 @@ class TextViewerViewModel {
         let requestWorkItem = DispatchWorkItem { [weak self] in
             attributedString.highlight(text, highlightedTextColor: color) { (string, count) in
                 DispatchQueue.main.async {
-                    self?.syntaxHighlightedText.value = string
+                    self?.attributedText.value = string
                     self?.searchResultsCount.value = count
                     self?.isProcessing.value = false
                 }
@@ -77,11 +78,8 @@ class TextViewerViewModel {
         }
         
         searchWorkItem = requestWorkItem
-        DispatchQueue
-            .global(qos: .userInteractive)
-            .asyncAfter(deadline: .now() + .milliseconds(500), execute: requestWorkItem)
+        backgroundQueue.asyncAfter(deadline: .now() + .milliseconds(500), execute: requestWorkItem)
     }
-    
 }
 
 extension NSAttributedString {
