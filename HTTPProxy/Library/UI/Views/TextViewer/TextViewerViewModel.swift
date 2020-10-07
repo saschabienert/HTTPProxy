@@ -36,18 +36,19 @@ class TextViewerViewModel {
     }
     
     private func highlightText() {
-        backgroundQueue.async {
+        let text = self.text
+        backgroundQueue.async { [weak self] in
             guard let highlightr = Highlightr() else {
                 return
             }
-            self.isProcessing.value = true
+            self?.isProcessing.value = true
             let theme = HTTPProxyUI.darkModeEnabled() ? "atom-one-dark" : "atom-one-light"
             highlightr.setTheme(to: theme)
-            if let highlightedText = highlightr.highlight(self.text) {
-                self.attributedText.value = highlightedText
-                self.originalHighlightedText = highlightedText
+            if let highlightedText = highlightr.highlight(text) {
+                self?.attributedText.value = highlightedText
+                self?.originalHighlightedText = highlightedText
             }
-            self.isProcessing.value = false
+            self?.isProcessing.value = false
         }
     }
     

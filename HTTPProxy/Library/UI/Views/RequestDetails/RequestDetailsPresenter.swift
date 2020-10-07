@@ -44,9 +44,13 @@ class RequestDetailsPresenter {
     }
     
     func openTextViewer(text: String, filename: String) {
-        let console = TextViewerViewController(text: text, filename: filename)
-        console.modalPresentationStyle = .fullScreen
-        self.presentingViewController.pushViewController(console, animated: true)
+        let nibName = String(describing: TextViewerViewController.self)
+        let textViewer = TextViewerViewController(nibName: nibName, bundle: HTTPProxyUI.bundle)
+        let color = HTTPProxyUI.colorScheme.highlightedTextColor
+        let viewModel = TextViewerViewModel(text: text, filename: filename, highlightedTextColor: color)
+        textViewer.viewModel = viewModel
+        textViewer.modalPresentationStyle = .fullScreen
+        presentingViewController.pushViewController(textViewer, animated: true)
     }
 }
 
