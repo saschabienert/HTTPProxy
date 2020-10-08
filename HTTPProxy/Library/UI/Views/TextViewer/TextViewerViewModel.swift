@@ -21,7 +21,7 @@ class TextViewerViewModel {
     let attributedText: Observable<NSAttributedString>
     let searchResultsCount: Observable<Int?>
 
-    private var searchWorkItem: DispatchWorkItem?
+    private var searchOperation: SearchOperation?
     private var originalHighlightedText: NSAttributedString?
     private let backgroundQueue = DispatchQueue.global(qos: .userInteractive)
 
@@ -56,9 +56,10 @@ class TextViewerViewModel {
         guard let attributedString = originalHighlightedText else {
             return
         }
-        
+
         isProcessing.value = true
-        searchWorkItem?.cancel()
+        searchOperation?.completion = nil
+        searchOperation = nil
         
         if text.isEmpty {
             attributedText.value = attributedString
@@ -67,19 +68,42 @@ class TextViewerViewModel {
             return
         }
         
-        let color = self.highlightedTextColor
-        let requestWorkItem = DispatchWorkItem { [weak self] in
-            attributedString.highlight(text, highlightedTextColor: color) { (string, count) in
-                DispatchQueue.main.async {
-                    self?.attributedText.value = string
-                    self?.searchResultsCount.value = count
-                    self?.isProcessing.value = false
-                }
+        let operation = SearchOperation(attributedString: attributedString, text: text, color: self.highlightedTextColor)
+        operation.completion = { [weak self] (string, count) in
+            self?.searchOperation = nil
+            DispatchQueue.main.async {
+                self?.attributedText.value = string
+                self?.searchResultsCount.value = count
+                self?.isProcessing.value = false
             }
         }
-        
-        searchWorkItem = requestWorkItem
-        backgroundQueue.asyncAfter(deadline: .now() + .milliseconds(500), execute: requestWorkItem)
+        self.searchOperation = operation
+        backgroundQueue.async {
+            operation.execute()
+        }
+    }
+}
+
+class SearchOperation {
+    
+    let attributedString: NSAttributedString
+    let text: String
+    let color: UIColor
+    var completion: ((NSAttributedString, Int) -> Void)?
+    
+    init(attributedString: NSAttributedString, text: String, color: UIColor) {
+        self.attributedString = attributedString
+        self.text = text
+        self.color = color
+    }
+    
+    func execute() {
+        let text = self.text
+        attributedString.highlight(text, highlightedTextColor: color) { [weak self] (string, count) in
+            if let completion = self?.completion {
+                completion(string, count)
+            }
+        }
     }
 }
 
