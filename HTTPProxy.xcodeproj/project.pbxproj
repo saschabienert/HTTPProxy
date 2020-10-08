@@ -131,7 +131,6 @@
 		80EF1E87242798140016D0A2 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EF1E5B242798140016D0A2 /* Data.swift */; };
 		80EF1E88242798140016D0A2 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EF1E5C242798140016D0A2 /* UIColor.swift */; };
 		80EF1E8B242798140016D0A2 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EF1E5F242798140016D0A2 /* String.swift */; };
-		80EF1E8C242798140016D0A2 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EF1E60242798140016D0A2 /* UIFont.swift */; };
 		80EF1E8D242798140016D0A2 /* UIWindow+ShakeGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EF1E61242798140016D0A2 /* UIWindow+ShakeGesture.swift */; };
 		80EF1E8F242798140016D0A2 /* TextViewerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80EF1E65242798140016D0A2 /* TextViewerViewController.xib */; };
 		80EF1E90242798140016D0A2 /* TextViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EF1E66242798140016D0A2 /* TextViewerViewController.swift */; };
@@ -319,7 +318,6 @@
 		80EF1E5B242798140016D0A2 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		80EF1E5C242798140016D0A2 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		80EF1E5F242798140016D0A2 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
-		80EF1E60242798140016D0A2 /* UIFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
 		80EF1E61242798140016D0A2 /* UIWindow+ShakeGesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWindow+ShakeGesture.swift"; sourceTree = "<group>"; };
 		80EF1E65242798140016D0A2 /* TextViewerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextViewerViewController.xib; sourceTree = "<group>"; };
 		80EF1E66242798140016D0A2 /* TextViewerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewerViewController.swift; sourceTree = "<group>"; };
@@ -638,7 +636,6 @@
 				8020256A250AA666009A4BAB /* NSAttributedString.swift */,
 				80EF1E5F242798140016D0A2 /* String.swift */,
 				80EF1E5C242798140016D0A2 /* UIColor.swift */,
-				80EF1E60242798140016D0A2 /* UIFont.swift */,
 				80EF1E61242798140016D0A2 /* UIWindow+ShakeGesture.swift */,
 			);
 			path = Extension;
@@ -1047,7 +1044,6 @@
 				80EF1EA7242798140016D0A2 /* HTTPProxyRequestInterceptor.swift in Sources */,
 				80EF1E8D242798140016D0A2 /* UIWindow+ShakeGesture.swift in Sources */,
 				80EF1E87242798140016D0A2 /* Data.swift in Sources */,
-				80EF1E8C242798140016D0A2 /* UIFont.swift in Sources */,
 				80EF1E90242798140016D0A2 /* TextViewerViewController.swift in Sources */,
 				80150A042523EB1700E9A419 /* Shims.swift in Sources */,
 				80EF1EA6242798140016D0A2 /* HTTPProxyDelegate.swift in Sources */,

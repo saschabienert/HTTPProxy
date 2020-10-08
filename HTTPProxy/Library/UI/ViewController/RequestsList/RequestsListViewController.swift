@@ -29,7 +29,7 @@ class RequestsListViewController: UIViewController {
         super.viewDidLoad()
 
         title = "iOS HTTP Proxy"
-        view.backgroundColor = HTTPProxyUI.colorScheme.backgroundColor
+        view.backgroundColor = HTTPProxyUI.settings.colorScheme.backgroundColor
         
         contentVC.delegate = self
         addChild(contentVC)

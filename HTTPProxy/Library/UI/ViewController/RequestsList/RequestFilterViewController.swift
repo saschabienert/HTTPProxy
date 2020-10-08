@@ -72,7 +72,7 @@ extension RequestFilterViewController: UICollectionViewDataSource {
         let filter = filters[indexPath.row]
         cell.titleLabel.text = filter.name
         cell.titleLabel.textColor = .white
-        cell.roundedView.backgroundColor = HTTPProxyUI.colorScheme.selectedColor
+        cell.roundedView.backgroundColor = HTTPProxyUI.settings.colorScheme.selectedColor
         cell.contentView.alpha = filter.enabled ? 1 : 0.6
         return cell
     }

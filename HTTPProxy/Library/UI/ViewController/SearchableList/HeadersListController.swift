@@ -22,7 +22,7 @@ class HeadersListController: NSObject {
         tableView.register(nib, forCellReuseIdentifier: HeadersListController.cellIdentifier)
 
         UITableViewHeaderFooterView.appearance().tintColor = .clear
-        UILabel.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.self]).textColor = HTTPProxyUI.colorScheme.primaryTextColor
+        UILabel.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.self]).textColor = HTTPProxyUI.settings.colorScheme.primaryTextColor
     }
     
     func load(sections: [SearchableListSection]) {

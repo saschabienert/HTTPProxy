@@ -15,21 +15,21 @@ class RequestDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = HTTPProxyUI.colorScheme.backgroundColor
-        segmentedControl.backgroundColor = HTTPProxyUI.colorScheme.foregroundColor
+        view.backgroundColor = HTTPProxyUI.settings.colorScheme.backgroundColor
+        segmentedControl.backgroundColor = HTTPProxyUI.settings.colorScheme.foregroundColor
         if #available(iOS 13.0, *) {
-            segmentedControl.selectedSegmentTintColor = HTTPProxyUI.colorScheme.selectedColor
+            segmentedControl.selectedSegmentTintColor = HTTPProxyUI.settings.colorScheme.selectedColor
             
             let selectedAttributes = [
                 NSAttributedString.Key.foregroundColor: UIColor.white
             ]
             let normalAttributes = [
-                NSAttributedString.Key.foregroundColor: HTTPProxyUI.colorScheme.secondaryTextColor
+                NSAttributedString.Key.foregroundColor: HTTPProxyUI.settings.colorScheme.secondaryTextColor
             ]
             segmentedControl.setTitleTextAttributes(selectedAttributes, for: .selected)
             segmentedControl.setTitleTextAttributes(normalAttributes, for: .normal)
         } else {
-            segmentedControl.tintColor = HTTPProxyUI.colorScheme.selectedColor
+            segmentedControl.tintColor = HTTPProxyUI.settings.colorScheme.selectedColor
         }
 
         updateChildViewController(0)

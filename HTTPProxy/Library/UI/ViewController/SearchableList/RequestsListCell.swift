@@ -15,12 +15,12 @@ class RequestsListCell: UITableViewCell {
         backgroundColor = UIColor.clear
         selectionStyle = .none
         
-        containerView.backgroundColor = HTTPProxyUI.colorScheme.foregroundColor
+        containerView.backgroundColor = HTTPProxyUI.settings.colorScheme.foregroundColor
         containerView.layer.cornerRadius = 8
         
-        let boldFont = UIFont(name: "Menlo-Bold", size: 14.0)!
+        let boldFont = HTTPProxyUI.settings.regularBoldFont
         titleLabel.font = boldFont
-        titleLabel.textColor = HTTPProxyUI.colorScheme.secondaryTextColor
+        titleLabel.textColor = HTTPProxyUI.settings.colorScheme.secondaryTextColor
         
         methodLabel.font = boldFont
         methodLabel.layer.masksToBounds = true
@@ -29,7 +29,7 @@ class RequestsListCell: UITableViewCell {
         statusLabel.layer.masksToBounds = true
         statusLabel.layer.cornerRadius = 8.0
         
-        activityView.color = HTTPProxyUI.colorScheme.primaryTextColor
+        activityView.color = HTTPProxyUI.settings.colorScheme.primaryTextColor
     }
     
     func configure(with viewModel: SearchableListItem) {
@@ -47,13 +47,13 @@ class RequestsListCell: UITableViewCell {
         if let requestStatus = viewModel.requestStatus {
             switch requestStatus {
             case .completed(let statusCode):
-                let color = (statusCode >= 200 && statusCode < 300) ? HTTPProxyUI.colorScheme.semanticColorPositive : HTTPProxyUI.colorScheme.semanticColorNegative
+                let color = (statusCode >= 200 && statusCode < 300) ? HTTPProxyUI.settings.colorScheme.semanticColorPositive : HTTPProxyUI.settings.colorScheme.semanticColorNegative
                 statusLabel.backgroundColor = color
                 statusLabel.text = "\(statusCode)"
                 statusLabel.isHidden = false
                 activityView.isHidden = true
             case .error:
-                statusLabel.backgroundColor = HTTPProxyUI.colorScheme.semanticColorNegative
+                statusLabel.backgroundColor = HTTPProxyUI.settings.colorScheme.semanticColorNegative
                 statusLabel.text = "Error"
                 statusLabel.isHidden = false
                 activityView.isHidden = true
@@ -75,8 +75,8 @@ class RequestsListCell: UITableViewCell {
     
     private func formattedKey(_ key: String) -> NSAttributedString {
         let attributes = [
-            NSAttributedString.Key.font: UIFont.menloBold14,
-            NSAttributedString.Key.foregroundColor: HTTPProxyUI.colorScheme.secondaryTextColor
+            NSAttributedString.Key.font: HTTPProxyUI.settings.regularBoldFont,
+            NSAttributedString.Key.foregroundColor: HTTPProxyUI.settings.colorScheme.secondaryTextColor
         ]
         return NSAttributedString(string: "\(key)", attributes: attributes)
     }
@@ -86,19 +86,19 @@ class RequestsListCell: UITableViewCell {
         paragraphStyle.lineBreakMode = .byCharWrapping
         
         let attributes = [
-            NSAttributedString.Key.font: UIFont.menlo14,
-            NSAttributedString.Key.foregroundColor: HTTPProxyUI.colorScheme.primaryTextColor,
+            NSAttributedString.Key.font: HTTPProxyUI.settings.regularFont,
+            NSAttributedString.Key.foregroundColor: HTTPProxyUI.settings.colorScheme.primaryTextColor,
             NSAttributedString.Key.paragraphStyle: paragraphStyle
         ]
         return NSAttributedString(string: "\(value)", attributes: attributes)
     }
     
     private func emphasizeKey(text: String) {
-        emphasizeText(text, label: contentLabel, font: UIFont.menloBold14, color: HTTPProxyUI.colorScheme.highlightedTextColor)
+        emphasizeText(text, label: contentLabel, font: HTTPProxyUI.settings.regularBoldFont, color: HTTPProxyUI.settings.colorScheme.highlightedTextColor)
     }
     
     private func emphasizeValue(text: String) {
-        emphasizeText(text, label: titleLabel, font: UIFont.menloBold14, color: HTTPProxyUI.colorScheme.highlightedTextColor)
+        emphasizeText(text, label: titleLabel, font: HTTPProxyUI.settings.regularBoldFont, color: HTTPProxyUI.settings.colorScheme.highlightedTextColor)
     }
     
     private func emphasizeText(_ text: String, label: UILabel, font: UIFont, color: UIColor) {

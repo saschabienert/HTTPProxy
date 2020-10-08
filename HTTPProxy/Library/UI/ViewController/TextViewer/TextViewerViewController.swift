@@ -23,37 +23,39 @@ class TextViewerViewController: UIViewController {
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         
-        activityIndicator.color = HTTPProxyUI.colorScheme.primaryTextColor
-        
+        activityIndicator.color = HTTPProxyUI.settings.colorScheme.primaryTextColor
+        if #available(iOS 13.0, *) {
+            activityIndicator.style = .large
+        }
+
         setupSearchbar()
         setupToolbar()
     }
     
     func setupToolbar() {
-        toolbar.tintColor = HTTPProxyUI.colorScheme.primaryTextColor
-        toolbar.barTintColor = HTTPProxyUI.colorScheme.foregroundColor
+        toolbar.tintColor = HTTPProxyUI.settings.colorScheme.primaryTextColor
+        toolbar.barTintColor = HTTPProxyUI.settings.colorScheme.foregroundColor
         stepper.minimumValue = viewModel.minimumFontSize
         stepper.maximumValue = viewModel.maximumFontSize
         stepper.value = viewModel.currentFontSize
     }
     
     func setupSearchbar() {
-        searchResultsLabel.backgroundColor = HTTPProxyUI.colorScheme.foregroundColor
-        searchResultsLabel.font = UIFont.menlo14
+        searchResultsLabel.backgroundColor = HTTPProxyUI.settings.colorScheme.foregroundColor
+        searchResultsLabel.font = HTTPProxyUI.settings.regularFont
         clearResultCount()
         
         searchBar.delegate = self
         searchBar.autocapitalizationType = .none
-        searchBar.barTintColor = HTTPProxyUI.colorScheme.foregroundColor
+        searchBar.barTintColor = HTTPProxyUI.settings.colorScheme.foregroundColor
         if #available(iOS 13.0, *) {
             searchBar.searchTextField.placeholder = "Search"
-            searchBar.searchTextField.backgroundColor = HTTPProxyUI.colorScheme.backgroundColor
-            searchBar.searchTextField.textColor = HTTPProxyUI.colorScheme.primaryTextColor
+            searchBar.searchTextField.backgroundColor = HTTPProxyUI.settings.colorScheme.backgroundColor
+            searchBar.searchTextField.textColor = HTTPProxyUI.settings.colorScheme.primaryTextColor
         } else {
-            let attributes = [NSAttributedString.Key.foregroundColor: HTTPProxyUI.colorScheme.primaryTextColor]
+            let attributes = [NSAttributedString.Key.foregroundColor: HTTPProxyUI.settings.colorScheme.primaryTextColor]
             UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = attributes
         }
-
     }
 
     func bindViewModel() {

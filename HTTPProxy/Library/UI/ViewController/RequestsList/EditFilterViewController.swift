@@ -113,21 +113,21 @@ class EditFilterViewController: UIViewController {
     }
     
     private func setupView() {
-        view.backgroundColor = HTTPProxyUI.colorScheme.backgroundColor
+        view.backgroundColor = HTTPProxyUI.settings.colorScheme.backgroundColor
         backgroundViews.forEach { (view) in
-            view.backgroundColor = HTTPProxyUI.colorScheme.foregroundColor
+            view.backgroundColor = HTTPProxyUI.settings.colorScheme.foregroundColor
         }
         
-        let boldFont = UIFont(name: "Menlo-Bold", size: 14.0)!
+        let boldFont = HTTPProxyUI.settings.regularBoldFont
         labels.forEach { (label) in
             label.font = boldFont
-            label.textColor = HTTPProxyUI.colorScheme.secondaryTextColor
+            label.textColor = HTTPProxyUI.settings.colorScheme.secondaryTextColor
         }
         
         textFields.forEach { (textField) in
             textField.autocorrectionType = .no
-            textField.font = UIFont.menloBold14
-            textField.textColor = HTTPProxyUI.colorScheme.primaryTextColor
+            textField.font = HTTPProxyUI.settings.regularBoldFont
+            textField.textColor = HTTPProxyUI.settings.colorScheme.primaryTextColor
             textField.delegate = self
         }
     }

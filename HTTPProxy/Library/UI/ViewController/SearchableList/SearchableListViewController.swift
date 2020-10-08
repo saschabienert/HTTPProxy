@@ -70,7 +70,7 @@ class SearchableListViewController: UIViewController {
         
         tableViewBottomLayoutConstraint.constant = tableViewBottonInset
 
-        view.backgroundColor = HTTPProxyUI.colorScheme.backgroundColor
+        view.backgroundColor = HTTPProxyUI.settings.colorScheme.backgroundColor
         headersListController = HeadersListController(tableView: tableView)
         headersListController.delegate = self
         headersListController.load(sections: sections)
@@ -81,7 +81,7 @@ class SearchableListViewController: UIViewController {
             button.setTitle(title, for: .normal)
             button.setTitleColor(.white, for: .normal)
             button.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
-            button.backgroundColor = HTTPProxyUI.colorScheme.selectedColor
+            button.backgroundColor = HTTPProxyUI.settings.colorScheme.selectedColor
             button.layer.masksToBounds = true
             button.layer.cornerRadius = 8.0
         } else {
@@ -214,10 +214,10 @@ class SearchListController: NSObject {
         searchBar.autocapitalizationType = .none
         if #available(iOS 13.0, *) {
             searchBar.searchTextField.placeholder = "Search"
-            searchBar.searchTextField.backgroundColor = HTTPProxyUI.colorScheme.foregroundColor
-            searchBar.searchTextField.textColor = HTTPProxyUI.colorScheme.primaryTextColor
+            searchBar.searchTextField.backgroundColor = HTTPProxyUI.settings.colorScheme.foregroundColor
+            searchBar.searchTextField.textColor = HTTPProxyUI.settings.colorScheme.primaryTextColor
         } else {
-            let attributes = [NSAttributedString.Key.foregroundColor: HTTPProxyUI.colorScheme.primaryTextColor]
+            let attributes = [NSAttributedString.Key.foregroundColor: HTTPProxyUI.settings.colorScheme.primaryTextColor]
             UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = attributes
         }
     }
