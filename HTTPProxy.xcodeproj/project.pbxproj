@@ -112,6 +112,8 @@
 		8020256B250AA666009A4BAB /* NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8020256A250AA666009A4BAB /* NSAttributedString.swift */; };
 		8020256D250AA7F7009A4BAB /* NSString_RangesSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8020256C250AA7F7009A4BAB /* NSString_RangesSpec.swift */; };
 		8028414B24C61BAC00340D23 /* SelectableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8028414A24C61BAC00340D23 /* SelectableLabel.swift */; };
+		8047F9BC252BB4E70088EB54 /* TextViewerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8047F9BB252BB4E70088EB54 /* TextViewerViewModel.swift */; };
+		8047F9C0252BB54D0088EB54 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8047F9BF252BB54D0088EB54 /* Observable.swift */; };
 		806E1AB02427948D005D7E24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E1AAF2427948D005D7E24 /* AppDelegate.swift */; };
 		806E1AB22427948D005D7E24 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E1AB12427948D005D7E24 /* ViewController.swift */; };
 		806E1AB52427948D005D7E24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 806E1AB32427948D005D7E24 /* Main.storyboard */; };
@@ -292,6 +294,8 @@
 		8020256A250AA666009A4BAB /* NSAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedString.swift; sourceTree = "<group>"; };
 		8020256C250AA7F7009A4BAB /* NSString_RangesSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSString_RangesSpec.swift; sourceTree = "<group>"; };
 		8028414A24C61BAC00340D23 /* SelectableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableLabel.swift; sourceTree = "<group>"; };
+		8047F9BB252BB4E70088EB54 /* TextViewerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewerViewModel.swift; sourceTree = "<group>"; };
+		8047F9BF252BB54D0088EB54 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		806E1AAC2427948D005D7E24 /* HTTPProxy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HTTPProxy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		806E1AAF2427948D005D7E24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		806E1AB12427948D005D7E24 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -515,6 +519,24 @@
 			path = Highlighter;
 			sourceTree = "<group>";
 		};
+		8047FF44252F7E820088EB54 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				80093AEE24887DB9000AD359 /* CollectionViewCenterLayout.swift */,
+				80093AEC24881BCB000AD359 /* RoundedView.swift */,
+				8028414A24C61BAC00340D23 /* SelectableLabel.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8047FF47252F7EB30088EB54 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				8047F9BF252BB54D0088EB54 /* Observable.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		806E1AA32427948D005D7E24 = {
 			isa = PBXGroup;
 			children = (
@@ -601,29 +623,28 @@
 				809F5D122440717C00E27F17 /* ColorScheme.swift */,
 				80EF1E7C242798140016D0A2 /* HTTPProxyPresenter.swift */,
 				80D7D9D8244473CD00D115C1 /* HTTPProxyUI.swift */,
-				80EF1E5A242798140016D0A2 /* Extensions */,
-				80EF1E63242798140016D0A2 /* Views */,
+				8047FF47252F7EB30088EB54 /* Helper */,
+				80EF1E5A242798140016D0A2 /* Extension */,
+				8047FF44252F7E820088EB54 /* View */,
+				80EF1E63242798140016D0A2 /* ViewController */,
 			);
 			path = UI;
 			sourceTree = "<group>";
 		};
-		80EF1E5A242798140016D0A2 /* Extensions */ = {
+		80EF1E5A242798140016D0A2 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				80093AEE24887DB9000AD359 /* CollectionViewCenterLayout.swift */,
 				80EF1E5B242798140016D0A2 /* Data.swift */,
 				8020256A250AA666009A4BAB /* NSAttributedString.swift */,
-				80093AEC24881BCB000AD359 /* RoundedView.swift */,
-				8028414A24C61BAC00340D23 /* SelectableLabel.swift */,
 				80EF1E5F242798140016D0A2 /* String.swift */,
 				80EF1E5C242798140016D0A2 /* UIColor.swift */,
 				80EF1E60242798140016D0A2 /* UIFont.swift */,
 				80EF1E61242798140016D0A2 /* UIWindow+ShakeGesture.swift */,
 			);
-			path = Extensions;
+			path = Extension;
 			sourceTree = "<group>";
 		};
-		80EF1E63242798140016D0A2 /* Views */ = {
+		80EF1E63242798140016D0A2 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
 				80EF1E67242798140016D0A2 /* RequestDetails */,
@@ -631,7 +652,7 @@
 				80CBB6BB243A6DB4008F6BDE /* SearchableList */,
 				80EF1E64242798140016D0A2 /* TextViewer */,
 			);
-			path = Views;
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		80EF1E64242798140016D0A2 /* TextViewer */ = {
@@ -639,6 +660,7 @@
 			children = (
 				80EF1E66242798140016D0A2 /* TextViewerViewController.swift */,
 				80EF1E65242798140016D0A2 /* TextViewerViewController.xib */,
+				8047F9BB252BB4E70088EB54 /* TextViewerViewModel.swift */,
 			);
 			path = TextViewer;
 			sourceTree = "<group>";
@@ -1009,6 +1031,7 @@
 				806E1AB22427948D005D7E24 /* ViewController.swift in Sources */,
 				80EF1E88242798140016D0A2 /* UIColor.swift in Sources */,
 				80EF1EAA242798140016D0A2 /* HTTPRequest.swift in Sources */,
+				8047F9BC252BB4E70088EB54 /* TextViewerViewModel.swift in Sources */,
 				80150A022523EB1700E9A419 /* HTMLUtils.swift in Sources */,
 				80EF1E9D242798140016D0A2 /* RequestDetailsViewController.swift in Sources */,
 				80EF1E9F242798140016D0A2 /* RequestViewModel.swift in Sources */,
@@ -1020,6 +1043,7 @@
 				80EF1EAB242798140016D0A2 /* HTTPResponse.swift in Sources */,
 				80EF1EA2242798140016D0A2 /* RequestsListCell.swift in Sources */,
 				80EF1EA3242798140016D0A2 /* RequestsListPresenter.swift in Sources */,
+				8047F9C0252BB54D0088EB54 /* Observable.swift in Sources */,
 				80EF1EA7242798140016D0A2 /* HTTPProxyRequestInterceptor.swift in Sources */,
 				80EF1E8D242798140016D0A2 /* UIWindow+ShakeGesture.swift in Sources */,
 				80EF1E87242798140016D0A2 /* Data.swift in Sources */,
