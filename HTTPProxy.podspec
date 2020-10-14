@@ -9,6 +9,5 @@ Pod::Spec.new do |spec|
   spec.swift_version = '5.0'
   spec.platform      = :ios, '9.0'
   spec.source_files  = 'HTTPProxy/Library/**/*.swift'
-  spec.resources     = ['HTTPProxy/Library/**/*.{storyboard,xib}']
-  spec.dependency 'Highlightr'
+  spec.resources     = ['HTTPProxy/Library/**/*.{storyboard,xib,js,css}']
 end
