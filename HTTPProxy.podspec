@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name          = 'HTTPProxy'
-  spec.version       = '0.0.4'
+  spec.version       = '0.0.5'
   spec.license       = { :type => 'MIT' }
   spec.homepage      = 'https://github.com/rafaelleao/HTTPProxy'
   spec.authors       = { 'Rafael Leão' => 'rafaeldeleao@gmail.com' }
