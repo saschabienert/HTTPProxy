@@ -66,6 +66,7 @@
 		80EF1EAB242798140016D0A2 /* HTTPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EF1E84242798140016D0A2 /* HTTPResponse.swift */; };
 		80EF1EAC242798140016D0A2 /* HTTPProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EF1E85242798140016D0A2 /* HTTPProxy.swift */; };
 		80EF1EAD242798140016D0A2 /* HTTPProxyURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EF1E86242798140016D0A2 /* HTTPProxyURLProtocol.swift */; };
+		80F47B1A253CA40800EA8D3D /* RequestListFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F47B19253CA40800EA8D3D /* RequestListFilter.swift */; };
 		F9911ECD06944A91D380F964 /* Pods_HTTPProxyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ADCA4653BB56FC6647819D7 /* Pods_HTTPProxyTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -167,6 +168,7 @@
 		80EF1E84242798140016D0A2 /* HTTPResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPResponse.swift; sourceTree = "<group>"; };
 		80EF1E85242798140016D0A2 /* HTTPProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPProxy.swift; sourceTree = "<group>"; };
 		80EF1E86242798140016D0A2 /* HTTPProxyURLProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPProxyURLProtocol.swift; sourceTree = "<group>"; };
+		80F47B19253CA40800EA8D3D /* RequestListFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestListFilter.swift; sourceTree = "<group>"; };
 		96BDDF51D4D6273C7A21265A /* Pods_HTTPProxy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HTTPProxy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		98CDF010F7161FE2F8F3E283 /* Pods-HTTPProxy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HTTPProxy.release.xcconfig"; path = "Target Support Files/Pods-HTTPProxy/Pods-HTTPProxy.release.xcconfig"; sourceTree = "<group>"; };
 		AD4B71626F3153989FD62A50 /* Pods-HTTPProxyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HTTPProxyTests.debug.xcconfig"; path = "Target Support Files/Pods-HTTPProxyTests/Pods-HTTPProxyTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -424,6 +426,7 @@
 				80093AF024892FA8000AD359 /* RequestsListViewController.storyboard */,
 				80EF1E79242798140016D0A2 /* RequestsListViewController.swift */,
 				80EF1E77242798140016D0A2 /* RequestViewModel.swift */,
+				80F47B19253CA40800EA8D3D /* RequestListFilter.swift */,
 			);
 			path = RequestsList;
 			sourceTree = "<group>";
@@ -717,6 +720,7 @@
 				80EF1EA8242798140016D0A2 /* HTTPProxyRequestInterceptorDelegate.swift in Sources */,
 				80D7D9D9244473CD00D115C1 /* HTTPProxyUI.swift in Sources */,
 				80EF1EAD242798140016D0A2 /* HTTPProxyURLProtocol.swift in Sources */,
+				80F47B1A253CA40800EA8D3D /* RequestListFilter.swift in Sources */,
 				801453032493AC0D003DE46E /* CollectionViewCenterLayout.swift in Sources */,
 				806E1AB02427948D005D7E24 /* AppDelegate.swift in Sources */,
 			);
