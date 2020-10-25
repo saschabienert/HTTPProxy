@@ -16,6 +16,8 @@ class RequestsListPresenter: NSObject {
     init(presentingViewController: UIViewController) {
         self.presentingViewController = presentingViewController
         self.requestsViewController = UIStoryboard(name: "RequestsListViewController", bundle: HTTPProxyUI.bundle).instantiateInitialViewController() as! RequestsListViewController
+        
+        self.requestsViewController.viewModel = RequestsListViewModel()
 
         let navigationController = UINavigationController(rootViewController: self.requestsViewController)
         self.navigationController = navigationController
@@ -35,8 +37,6 @@ class RequestsListPresenter: NSObject {
         let filterButton =  UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(filter))
         let clearButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(clear))
         requestsViewController.navigationItem.rightBarButtonItems = [clearButton, filterButton]
-        
-        HTTPProxy.shared.internalDelegate = self
     }
     
     func present() {
@@ -56,31 +56,11 @@ class RequestsListPresenter: NSObject {
     }
     
     @objc func clear() {
-        HTTPProxy.shared.clearRequests()
-        requestsViewController.loadRequests(HTTPProxy.shared.requests)
-    }
-}
-
-extension RequestsListPresenter: HTTPProxyDelegate {
-
-    func shouldFireURLRequest(_ urlRequest: URLRequest) -> Bool {
-        return true
-    }
-    
-    func willFireRequest(_ httpRequest: HTTPRequest) {
-        requestsViewController.loadRequests(HTTPProxy.shared.requests)
-    }
-    
-    func didCompleteRequest(_ httpRequest: HTTPRequest) {
-        requestsViewController.loadRequests(HTTPProxy.shared.requests)
+        requestsViewController.clearRequests()
     }
 }
 
 extension RequestsListPresenter: RequestsListViewOutput {
-    func viewLoaded() {
-        requestsViewController.loadRequests(HTTPProxy.shared.requests)
-        requestsViewController.loadFilters(HTTPProxy.shared.filters)
-    }
     
     func requestSelected(_ request: HTTPRequest) {
         let presenter = RequestDetailsPresenter(request: request, presentingViewController: navigationController)
@@ -92,16 +72,6 @@ extension RequestsListPresenter: RequestsListViewOutput {
         filterVC.delegate = self
         filterVC.filter = filter
         navigationController.pushViewController(filterVC, animated: true)
-    }
-    
-    func deleteFilter(_ filter: HTTPProxyFilter) {
-        var filters = requestsViewController.filters
-        if let index = filters.firstIndex(where: { aFilter -> Bool in
-               aFilter === filter
-           }) {
-            filters.remove(at: index)
-            requestsViewController.loadFilters(filters)
-        }
     }
 }
 
@@ -117,7 +87,7 @@ extension RequestsListPresenter: EditFilterViewControllerDelegate {
         } else {
             HTTPProxy.shared.filters.append(filter)
         }
-        requestsViewController.loadFilters(HTTPProxy.shared.filters)
+        requestsViewController.reloadFilters()
         navigationController.popViewController(animated: true)
     }
 }

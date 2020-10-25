@@ -27,6 +27,7 @@
 		8028414B24C61BAC00340D23 /* SelectableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8028414A24C61BAC00340D23 /* SelectableLabel.swift */; };
 		8047F9BC252BB4E70088EB54 /* TextViewerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8047F9BB252BB4E70088EB54 /* TextViewerViewModel.swift */; };
 		8047F9C0252BB54D0088EB54 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8047F9BF252BB54D0088EB54 /* Observable.swift */; };
+		805A0186254A261E0078EF51 /* RequestsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805A0185254A261E0078EF51 /* RequestsListViewModel.swift */; };
 		806E1AB02427948D005D7E24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E1AAF2427948D005D7E24 /* AppDelegate.swift */; };
 		806E1AB22427948D005D7E24 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E1AB12427948D005D7E24 /* ViewController.swift */; };
 		806E1AB52427948D005D7E24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 806E1AB32427948D005D7E24 /* Main.storyboard */; };
@@ -124,6 +125,7 @@
 		8028414A24C61BAC00340D23 /* SelectableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableLabel.swift; sourceTree = "<group>"; };
 		8047F9BB252BB4E70088EB54 /* TextViewerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewerViewModel.swift; sourceTree = "<group>"; };
 		8047F9BF252BB54D0088EB54 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		805A0185254A261E0078EF51 /* RequestsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsListViewModel.swift; sourceTree = "<group>"; };
 		806E1AAC2427948D005D7E24 /* HTTPProxy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HTTPProxy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		806E1AAF2427948D005D7E24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		806E1AB12427948D005D7E24 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -425,11 +427,12 @@
 				80C632F9248D09CF00B36353 /* EditFilterViewController.storyboard */,
 				80C632F5248BB0DA00B36353 /* EditFilterViewController.swift */,
 				80D4917824852890007325AF /* RequestFilterViewController.swift */,
+				80F47B19253CA40800EA8D3D /* RequestListFilter.swift */,
 				80EF1E7B242798140016D0A2 /* RequestsListPresenter.swift */,
 				80093AF024892FA8000AD359 /* RequestsListViewController.storyboard */,
 				80EF1E79242798140016D0A2 /* RequestsListViewController.swift */,
+				805A0185254A261E0078EF51 /* RequestsListViewModel.swift */,
 				80EF1E77242798140016D0A2 /* RequestViewModel.swift */,
-				80F47B19253CA40800EA8D3D /* RequestListFilter.swift */,
 			);
 			path = RequestsList;
 			sourceTree = "<group>";
@@ -726,6 +729,7 @@
 				80EF1EAD242798140016D0A2 /* HTTPProxyURLProtocol.swift in Sources */,
 				80F47B1A253CA40800EA8D3D /* RequestListFilter.swift in Sources */,
 				801453032493AC0D003DE46E /* CollectionViewCenterLayout.swift in Sources */,
+				805A0186254A261E0078EF51 /* RequestsListViewModel.swift in Sources */,
 				806E1AB02427948D005D7E24 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -2,10 +2,8 @@ import UIKit
 
 protocol RequestsListViewOutput {
     
-    func viewLoaded()
     func requestSelected(_ request: HTTPRequest)
     func editFilter(_ filter: HTTPProxyFilter)
-    func deleteFilter(_ filter: HTTPProxyFilter)
 }
 
 class RequestsListViewController: UIViewController {
@@ -20,9 +18,7 @@ class RequestsListViewController: UIViewController {
     @IBOutlet private var newRequestNotification: UILabel!
     private var refreshControl = UIRefreshControl()
 
-    private var source: [HTTPRequest] = []
-    private var filteredSource: [HTTPRequest] = []
-    var filters: [HTTPProxyFilter] = []
+    var viewModel: RequestsListViewModel!
     var requestsListViewOutput: RequestsListViewOutput?
 
     override func viewDidLoad() {
@@ -39,7 +35,19 @@ class RequestsListViewController: UIViewController {
         contentVC.view.frame = frame
         contentVC.didMove(toParent: self)
 
-        requestsListViewOutput?.viewLoaded()
+        viewModel.searchableListSection.bind { (section) in
+            if let section = section {
+                self.contentVC.loadSections([section])
+            }
+        }
+        
+        viewModel.filters.bind { (filters) in
+            self.filterVC.loadFilters(filters)
+        }
+    }
+    
+    func clearRequests() {
+        viewModel.clearRequest()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -51,39 +59,16 @@ class RequestsListViewController: UIViewController {
         filterVC.delegate = self
     }
     
-    func loadFilters(_ filters: [HTTPProxyFilter]) {
-        self.filters = filters
-        filterVC.loadFilters(filters)
-        showFilteredRequests()
-    }
-    
-    func loadRequests(_ requests: [HTTPRequest]) {
-        source = requests
-        showFilteredRequests()
-    }
-    
-    func showFilteredRequests() {
-        filteredSource = RequestListFilter().filterRequests(source, with: filters)
-
-        var requestModels: [RequestViewModel] = []
-        for request in filteredSource {
-            let viewModel = RequestViewModel(request: request)
-            requestModels.append(viewModel)
-        }
-        
-        let filterEnabled = filters.contains { (filter) -> Bool in
-            filter.enabled
-        }
-        let totalCount = filterEnabled ? source.count : nil
-        let section = SearchableListSection(items: requestModels, title: "Requests", totalCount: totalCount)
-        contentVC.loadSections([section])
+    func reloadFilters() {
+        viewModel.reloadFilters()
     }
 }
 
 extension RequestsListViewController: RequestDetailsDelegate {
     func didSelectItem(at index: Int) {
-        let request = filteredSource[index]
-        requestsListViewOutput?.requestSelected(request)
+        if let request = viewModel.request(at: index) {
+            requestsListViewOutput?.requestSelected(request)
+        }
     }
 }
 
@@ -93,7 +78,7 @@ extension RequestsListViewController: RequestFilterViewControllerDelegate {
     }
     
     func deleteFilter(_ filter: HTTPProxyFilter) {
-        requestsListViewOutput?.deleteFilter(filter)
+        viewModel.deleteFilter(filter)
     }
     
     func filterDidUpdateHeight(_ height: CGFloat) {
@@ -103,6 +88,6 @@ extension RequestsListViewController: RequestFilterViewControllerDelegate {
     
     func filterSelected(_ filter: HTTPProxyFilter) {
         filter.enabled = !filter.enabled
-        showFilteredRequests()
+        viewModel.showFilteredRequests()
     }
 }
