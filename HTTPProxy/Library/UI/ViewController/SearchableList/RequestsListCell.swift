@@ -8,7 +8,8 @@ class RequestsListCell: UITableViewCell {
     @IBOutlet private var statusLabel: UILabel!
     @IBOutlet private var contentLabel: SelectableLabel!
     @IBOutlet private var activityView: UIActivityIndicatorView!
-    
+    private var viewModel: RequestsListCellViewModel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -32,19 +33,39 @@ class RequestsListCell: UITableViewCell {
         activityView.color = HTTPProxyUI.settings.colorScheme.primaryTextColor
     }
     
-    func configure(with viewModel: SearchableListItem) {
-        titleLabel.attributedText = formattedKey(viewModel.key)
-        contentLabel.attributedText = formattedValue(viewModel.value)
+    func configure(with searchableListItem: SearchableListItem) {
         
-        if let method = viewModel.method {
-            methodLabel.text = method
-            methodLabel.backgroundColor = .white
-            methodLabel.textColor = .black
-        } else {
-            methodLabel.isHidden = true
+        self.viewModel = RequestsListCellViewModel(searchableListItem: searchableListItem)
+        
+        viewModel.key.bind { [weak self] (key) in
+            self?.titleLabel.attributedText = key
         }
         
-        if let requestStatus = viewModel.requestStatus {
+        viewModel.value.bind { [weak self] (value) in
+            self?.contentLabel.attributedText = value
+        }
+        
+        viewModel.method.bind { [weak self] (method) in
+            if let method = method {
+                self?.methodLabel.text = method
+                self?.methodLabel.backgroundColor = .white
+                self?.methodLabel.textColor = .black
+            } else {
+                self?.methodLabel.isHidden = true
+            }
+        }
+        
+        viewModel.requestStatus.bind { [weak self] (requestStatus) in
+            self?.updateStatusLabel(requestStatus: requestStatus)
+        }
+    }
+    
+    func emphasize(text: String) {
+        viewModel.emphasize(text: text)
+    }
+    
+    private func updateStatusLabel(requestStatus: RequestStatus?) {
+        if let requestStatus = requestStatus {
             switch requestStatus {
             case .completed(let statusCode):
                 let color = (statusCode >= 200 && statusCode < 300) ? HTTPProxyUI.settings.colorScheme.semanticColorPositive : HTTPProxyUI.settings.colorScheme.semanticColorNegative
@@ -66,47 +87,5 @@ class RequestsListCell: UITableViewCell {
             statusLabel.isHidden = true
             activityView.isHidden = true
         }
-    }
-    
-    func emphasize(text: String) {
-        emphasizeKey(text: text)
-        emphasizeValue(text: text)
-    }
-    
-    private func formattedKey(_ key: String) -> NSAttributedString {
-        let attributes = [
-            NSAttributedString.Key.font: HTTPProxyUI.settings.regularBoldFont,
-            NSAttributedString.Key.foregroundColor: HTTPProxyUI.settings.colorScheme.secondaryTextColor
-        ]
-        return NSAttributedString(string: "\(key)", attributes: attributes)
-    }
-    
-    private func formattedValue(_ value: String) -> NSAttributedString {
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineBreakMode = .byCharWrapping
-        
-        let attributes = [
-            NSAttributedString.Key.font: HTTPProxyUI.settings.regularFont,
-            NSAttributedString.Key.foregroundColor: HTTPProxyUI.settings.colorScheme.primaryTextColor,
-            NSAttributedString.Key.paragraphStyle: paragraphStyle
-        ]
-        return NSAttributedString(string: "\(value)", attributes: attributes)
-    }
-    
-    private func emphasizeKey(text: String) {
-        emphasizeText(text, label: contentLabel, font: HTTPProxyUI.settings.regularBoldFont, color: HTTPProxyUI.settings.colorScheme.highlightedTextColor)
-    }
-    
-    private func emphasizeValue(text: String) {
-        emphasizeText(text, label: titleLabel, font: HTTPProxyUI.settings.regularBoldFont, color: HTTPProxyUI.settings.colorScheme.highlightedTextColor)
-    }
-    
-    private func emphasizeText(_ text: String, label: UILabel, font: UIFont, color: UIColor) {
-        guard let attributedText = label.attributedText,
-            let ranges = attributedText.ranges(of: text) else {
-            return
-        }
-        
-        label.attributedText = attributedText.emphasizeText(in: ranges, color: color, font: font)
     }
 }

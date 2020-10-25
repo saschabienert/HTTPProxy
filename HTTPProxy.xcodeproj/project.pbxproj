@@ -36,6 +36,7 @@
 		806E1AD02427948F005D7E24 /* HTTPProxyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E1ACF2427948F005D7E24 /* HTTPProxyUITests.swift */; };
 		809F5D132440717C00E27F17 /* ColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809F5D122440717C00E27F17 /* ColorScheme.swift */; };
 		80A909AF2531F14A00FEAF78 /* pojoaque.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 80A909AE2531F14A00FEAF78 /* pojoaque.min.css */; };
+		80B4A89E25445E3F001F63AA /* RequestsListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B4A89D25445E3F001F63AA /* RequestsListCellViewModel.swift */; };
 		80BF81F9243F5B60001D54ED /* HeadersListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BF81F8243F5B60001D54ED /* HeadersListController.swift */; };
 		80C632F6248BB0DA00B36353 /* EditFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C632F5248BB0DA00B36353 /* EditFilterViewController.swift */; };
 		80C632FA248D09CF00B36353 /* EditFilterViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80C632F9248D09CF00B36353 /* EditFilterViewController.storyboard */; };
@@ -138,6 +139,7 @@
 		806E1AD12427948F005D7E24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		809F5D122440717C00E27F17 /* ColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorScheme.swift; sourceTree = "<group>"; };
 		80A909AE2531F14A00FEAF78 /* pojoaque.min.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = pojoaque.min.css; sourceTree = "<group>"; };
+		80B4A89D25445E3F001F63AA /* RequestsListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsListCellViewModel.swift; sourceTree = "<group>"; };
 		80BF81F8243F5B60001D54ED /* HeadersListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadersListController.swift; sourceTree = "<group>"; };
 		80C632F5248BB0DA00B36353 /* EditFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFilterViewController.swift; sourceTree = "<group>"; };
 		80C632F9248D09CF00B36353 /* EditFilterViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditFilterViewController.storyboard; sourceTree = "<group>"; };
@@ -342,6 +344,7 @@
 				80BF81F8243F5B60001D54ED /* HeadersListController.swift */,
 				80EF1E7A242798140016D0A2 /* RequestsListCell.swift */,
 				80EF1E76242798140016D0A2 /* RequestsListCell.xib */,
+				80B4A89D25445E3F001F63AA /* RequestsListCellViewModel.swift */,
 				80EF1E6A242798140016D0A2 /* SearchableListViewController.swift */,
 				80EF1E6C242798140016D0A2 /* SearchableListViewController.xib */,
 			);
@@ -709,6 +712,7 @@
 				809F5D132440717C00E27F17 /* ColorScheme.swift in Sources */,
 				80EF1EA1242798140016D0A2 /* RequestsListViewController.swift in Sources */,
 				80D4917A24852890007325AF /* RequestFilterViewController.swift in Sources */,
+				80B4A89E25445E3F001F63AA /* RequestsListCellViewModel.swift in Sources */,
 				80093AED24881BCB000AD359 /* RoundedView.swift in Sources */,
 				80150A032523EB1700E9A419 /* Theme.swift in Sources */,
 				80EF1E94242798140016D0A2 /* RequestDetailsPresenter.swift in Sources */,

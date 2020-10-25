@@ -106,15 +106,3 @@ class SearchOperation {
         }
     }
 }
-
-extension NSAttributedString {
-    
-    func highlight(_ text: String, highlightedTextColor: UIColor, completion: @escaping (NSAttributedString, Int) -> Void) {
-        guard let ranges = self.ranges(of: text) else {
-            completion(self, 0)
-            return
-        }
-        let highlightedText = self.emphasizeText(in: ranges, color: highlightedTextColor)
-        completion(highlightedText, ranges.count)
-    }
-}
