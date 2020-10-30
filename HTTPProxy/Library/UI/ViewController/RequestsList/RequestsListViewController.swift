@@ -1,6 +1,6 @@
 import UIKit
 
-protocol RequestsListViewOutput {
+protocol RequestsListViewOutput: class {
     
     func requestSelected(_ request: HTTPRequest)
     func editFilter(_ filter: HTTPProxyFilter)
@@ -19,7 +19,7 @@ class RequestsListViewController: UIViewController {
     private var refreshControl = UIRefreshControl()
 
     var viewModel: RequestsListViewModel!
-    var requestsListViewOutput: RequestsListViewOutput?
+    weak var requestsListViewOutput: RequestsListViewOutput?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,14 +35,14 @@ class RequestsListViewController: UIViewController {
         contentVC.view.frame = frame
         contentVC.didMove(toParent: self)
 
-        viewModel.searchableListSection.bind { (section) in
+        viewModel.searchableListSection.bind { [weak self] section in
             if let section = section {
-                self.contentVC.loadSections([section])
+                self?.contentVC.loadSections([section])
             }
         }
         
-        viewModel.filters.bind { (filters) in
-            self.filterVC.loadFilters(filters)
+        viewModel.filters.bind { [weak self] filters in
+            self?.filterVC.loadFilters(filters)
         }
     }
     

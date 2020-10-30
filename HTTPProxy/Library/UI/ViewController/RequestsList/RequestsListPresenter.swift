@@ -10,7 +10,7 @@ class RequestsListPresenter: NSObject {
     private var source: [HTTPRequest] = []
     private let requestsViewController: RequestsListViewController
     private var navigationController: UINavigationController
-    private var presentingViewController: UIViewController
+    private weak var presentingViewController: UIViewController?
     weak var delegate: RequestsListPresenterDelegate?
 
     init(presentingViewController: UIViewController) {
@@ -40,7 +40,7 @@ class RequestsListPresenter: NSObject {
     }
     
     func present() {
-        presentingViewController.present(navigationController, animated: false)
+        presentingViewController?.present(navigationController, animated: false)
     }
     
     @objc func close() {
