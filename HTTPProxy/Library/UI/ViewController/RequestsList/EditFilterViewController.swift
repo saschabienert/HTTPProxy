@@ -82,7 +82,7 @@ class EditFilterViewController: UIViewController {
             showError(message: "Field 'name' cannot be empty")
             return
         }
-        var requestFilter = RequestFilter()
+        let requestFilter = filter?.requestFilter ?? RequestFilter()
         requestFilter.scheme = schemeTextField.validText()
         if let scheme = requestFilter.scheme {
             if !(scheme == "http" || scheme == "https") {
@@ -108,8 +108,13 @@ class EditFilterViewController: UIViewController {
             requestFilter.headerFields = pairs
         }
         
-        let filter = HTTPProxyFilter(name: name, requestFilter: requestFilter)
-        delegate?.editFilterViewController(self, didEditFilter: filter)
+        if let filter = filter {
+            filter.name = name
+            delegate?.editFilterViewController(self, didEditFilter: filter)
+        } else {
+            let filter = HTTPProxyFilter(name: name, requestFilter: requestFilter)
+            delegate?.editFilterViewController(self, didEditFilter: filter)
+        }
     }
     
     private func setupView() {

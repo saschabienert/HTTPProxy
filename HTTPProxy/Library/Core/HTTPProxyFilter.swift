@@ -16,23 +16,13 @@ extension KeyValuePair: Equatable {
     }
 }
 
-public struct RequestFilter {
+public class RequestFilter {
     public var httpMethod: String?
     public var scheme: String?
     public var host: String?
     public var port: Int?
     public var queryItems: [KeyValuePair]?
     public var headerFields: [KeyValuePair]?
-    
-    public init(httpMethod: String? = nil, scheme: String? = nil, host: String? = nil, port: Int? = nil,
-                queryItems: [KeyValuePair]? = nil, headerFields: [KeyValuePair]? = nil) {
-        self.httpMethod = httpMethod
-        self.scheme = scheme
-        self.host = host
-        self.port = port
-        self.queryItems = queryItems
-        self.headerFields = headerFields
-    }
 }
 
 public class HTTPProxyFilter {
@@ -43,5 +33,11 @@ public class HTTPProxyFilter {
     public init(name: String, requestFilter: RequestFilter) {
         self.name = name
         self.requestFilter = requestFilter
+    }
+}
+
+extension HTTPProxyFilter: Equatable {
+    public static func == (lhs: HTTPProxyFilter, rhs: HTTPProxyFilter) -> Bool {
+        lhs === rhs
     }
 }

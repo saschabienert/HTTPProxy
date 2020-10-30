@@ -11,8 +11,8 @@ class RequestsListViewModel {
         source = HTTPProxy.shared.requests
         filters = Observable(HTTPProxy.shared.filters)
         searchableListSection = Observable(nil)
-        HTTPProxy.shared.internalDelegate = self
 
+        HTTPProxy.shared.internalDelegate = self
         showFilteredRequests()
     }
     
@@ -55,13 +55,16 @@ class RequestsListViewModel {
         showFilteredRequests()
     }
     
+    func addFilter(_ filter: HTTPProxyFilter) {
+        HTTPProxy.shared.filters.append(filter)
+        reloadFilters()
+    }
+    
     func deleteFilter(_ filter: HTTPProxyFilter) {
-        if let index = filters.value.firstIndex(where: { aFilter -> Bool in
-               aFilter === filter
-           }) {
-            filters.value.remove(at: index)
-            showFilteredRequests()
+        if let index = HTTPProxy.shared.filters.firstIndex(of: filter) {
+            HTTPProxy.shared.filters.remove(at: index)
         }
+        reloadFilters()
     }
 }
 

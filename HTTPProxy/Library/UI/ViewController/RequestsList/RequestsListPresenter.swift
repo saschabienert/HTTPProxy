@@ -34,7 +34,7 @@ class RequestsListPresenter: NSObject {
 
         navigationController.modalPresentationStyle = .fullScreen
         requestsViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(close))
-        let filterButton =  UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(filter))
+        let filterButton =  UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(createFilter))
         let clearButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(clear))
         requestsViewController.navigationItem.rightBarButtonItems = [clearButton, filterButton]
     }
@@ -49,14 +49,19 @@ class RequestsListPresenter: NSObject {
         }
     }
     
-    @objc func filter() {
-        let filterVC = UIStoryboard(name: "EditFilterViewController", bundle: HTTPProxyUI.bundle).instantiateInitialViewController() as! EditFilterViewController
-        filterVC.delegate = self
-        navigationController.pushViewController(filterVC, animated: true)
+    @objc func createFilter() {
+        editOrCreateFilter()
     }
     
     @objc func clear() {
         requestsViewController.clearRequests()
+    }
+    
+    private func editOrCreateFilter(filter: HTTPProxyFilter? = nil) {
+        let filterVC = UIStoryboard(name: "EditFilterViewController", bundle: HTTPProxyUI.bundle).instantiateInitialViewController() as! EditFilterViewController
+        filterVC.delegate = self
+        filterVC.filter = filter
+        navigationController.pushViewController(filterVC, animated: true)
     }
 }
 
@@ -68,26 +73,17 @@ extension RequestsListPresenter: RequestsListViewOutput {
     }
     
     func editFilter(_ filter: HTTPProxyFilter) {
-        let filterVC = UIStoryboard(name: "EditFilterViewController", bundle: HTTPProxyUI.bundle).instantiateInitialViewController() as! EditFilterViewController
-        filterVC.delegate = self
-        filterVC.filter = filter
-        navigationController.pushViewController(filterVC, animated: true)
+        editOrCreateFilter(filter: filter)
     }
 }
 
 extension RequestsListPresenter: EditFilterViewControllerDelegate {
     func editFilterViewController(_ viewController: EditFilterViewController, didEditFilter filter: HTTPProxyFilter) {
-        if let originalFilter = viewController.filter {
-            filter.enabled = originalFilter.enabled
-            if let index = HTTPProxy.shared.filters.firstIndex(where: { (aFilter) -> Bool in
-                originalFilter === aFilter
-            }) {
-                HTTPProxy.shared.filters[index] = filter
-            }
+        if viewController.filter == nil {
+            requestsViewController.addFilter(filter)
         } else {
-            HTTPProxy.shared.filters.append(filter)
+            requestsViewController.reloadFilters()
         }
-        requestsViewController.reloadFilters()
         navigationController.popViewController(animated: true)
     }
 }

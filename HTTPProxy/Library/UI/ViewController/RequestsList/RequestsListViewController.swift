@@ -59,6 +59,10 @@ class RequestsListViewController: UIViewController {
         filterVC.delegate = self
     }
     
+    func addFilter(_ filter: HTTPProxyFilter) {
+        viewModel.addFilter(filter)
+    }
+    
     func reloadFilters() {
         viewModel.reloadFilters()
     }
