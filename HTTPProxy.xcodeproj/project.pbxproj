@@ -52,7 +52,7 @@
 		80EF1E8F242798140016D0A2 /* TextViewerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80EF1E65242798140016D0A2 /* TextViewerViewController.xib */; };
 		80EF1E90242798140016D0A2 /* TextViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EF1E66242798140016D0A2 /* TextViewerViewController.swift */; };
 		80EF1E93242798140016D0A2 /* SearchableListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EF1E6A242798140016D0A2 /* SearchableListViewController.swift */; };
-		80EF1E94242798140016D0A2 /* RequestDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EF1E6B242798140016D0A2 /* RequestDetailsPresenter.swift */; };
+		80EF1E94242798140016D0A2 /* RequestDetailsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EF1E6B242798140016D0A2 /* RequestDetailsCoordinator.swift */; };
 		80EF1E95242798140016D0A2 /* SearchableListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80EF1E6C242798140016D0A2 /* SearchableListViewController.xib */; };
 		80EF1E9B242798140016D0A2 /* RequestDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80EF1E72242798140016D0A2 /* RequestDetailsViewController.xib */; };
 		80EF1E9D242798140016D0A2 /* RequestDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EF1E74242798140016D0A2 /* RequestDetailsViewController.swift */; };
@@ -60,7 +60,7 @@
 		80EF1E9F242798140016D0A2 /* RequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EF1E77242798140016D0A2 /* RequestViewModel.swift */; };
 		80EF1EA1242798140016D0A2 /* RequestsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EF1E79242798140016D0A2 /* RequestsListViewController.swift */; };
 		80EF1EA2242798140016D0A2 /* RequestsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EF1E7A242798140016D0A2 /* RequestsListCell.swift */; };
-		80EF1EA3242798140016D0A2 /* RequestsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EF1E7B242798140016D0A2 /* RequestsListPresenter.swift */; };
+		80EF1EA3242798140016D0A2 /* RequestsListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EF1E7B242798140016D0A2 /* RequestsListCoordinator.swift */; };
 		80EF1EA4242798140016D0A2 /* HTTPProxyPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EF1E7C242798140016D0A2 /* HTTPProxyPresenter.swift */; };
 		80EF1EA6242798140016D0A2 /* HTTPProxyDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EF1E7F242798140016D0A2 /* HTTPProxyDelegate.swift */; };
 		80EF1EA7242798140016D0A2 /* HTTPProxyRequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EF1E80242798140016D0A2 /* HTTPProxyRequestInterceptor.swift */; };
@@ -157,7 +157,7 @@
 		80EF1E65242798140016D0A2 /* TextViewerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextViewerViewController.xib; sourceTree = "<group>"; };
 		80EF1E66242798140016D0A2 /* TextViewerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewerViewController.swift; sourceTree = "<group>"; };
 		80EF1E6A242798140016D0A2 /* SearchableListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchableListViewController.swift; sourceTree = "<group>"; };
-		80EF1E6B242798140016D0A2 /* RequestDetailsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestDetailsPresenter.swift; sourceTree = "<group>"; };
+		80EF1E6B242798140016D0A2 /* RequestDetailsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestDetailsCoordinator.swift; sourceTree = "<group>"; };
 		80EF1E6C242798140016D0A2 /* SearchableListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchableListViewController.xib; sourceTree = "<group>"; };
 		80EF1E72242798140016D0A2 /* RequestDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RequestDetailsViewController.xib; sourceTree = "<group>"; };
 		80EF1E74242798140016D0A2 /* RequestDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestDetailsViewController.swift; sourceTree = "<group>"; };
@@ -165,7 +165,7 @@
 		80EF1E77242798140016D0A2 /* RequestViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestViewModel.swift; sourceTree = "<group>"; };
 		80EF1E79242798140016D0A2 /* RequestsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestsListViewController.swift; sourceTree = "<group>"; };
 		80EF1E7A242798140016D0A2 /* RequestsListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestsListCell.swift; sourceTree = "<group>"; };
-		80EF1E7B242798140016D0A2 /* RequestsListPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestsListPresenter.swift; sourceTree = "<group>"; };
+		80EF1E7B242798140016D0A2 /* RequestsListCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestsListCoordinator.swift; sourceTree = "<group>"; };
 		80EF1E7C242798140016D0A2 /* HTTPProxyPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPProxyPresenter.swift; sourceTree = "<group>"; };
 		80EF1E7F242798140016D0A2 /* HTTPProxyDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPProxyDelegate.swift; sourceTree = "<group>"; };
 		80EF1E80242798140016D0A2 /* HTTPProxyRequestInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPProxyRequestInterceptor.swift; sourceTree = "<group>"; };
@@ -417,7 +417,7 @@
 		80EF1E67242798140016D0A2 /* RequestDetails */ = {
 			isa = PBXGroup;
 			children = (
-				80EF1E6B242798140016D0A2 /* RequestDetailsPresenter.swift */,
+				80EF1E6B242798140016D0A2 /* RequestDetailsCoordinator.swift */,
 				80EF1E74242798140016D0A2 /* RequestDetailsViewController.swift */,
 				80EF1E72242798140016D0A2 /* RequestDetailsViewController.xib */,
 			);
@@ -431,7 +431,7 @@
 				80C632F5248BB0DA00B36353 /* EditFilterViewController.swift */,
 				80D4917824852890007325AF /* RequestFilterViewController.swift */,
 				80F47B19253CA40800EA8D3D /* RequestListFilter.swift */,
-				80EF1E7B242798140016D0A2 /* RequestsListPresenter.swift */,
+				80EF1E7B242798140016D0A2 /* RequestsListCoordinator.swift */,
 				80093AF024892FA8000AD359 /* RequestsListViewController.storyboard */,
 				80EF1E79242798140016D0A2 /* RequestsListViewController.swift */,
 				805A0185254A261E0078EF51 /* RequestsListViewModel.swift */,
@@ -707,7 +707,7 @@
 				80BF81F9243F5B60001D54ED /* HeadersListController.swift in Sources */,
 				80EF1EAB242798140016D0A2 /* HTTPResponse.swift in Sources */,
 				80EF1EA2242798140016D0A2 /* RequestsListCell.swift in Sources */,
-				80EF1EA3242798140016D0A2 /* RequestsListPresenter.swift in Sources */,
+				80EF1EA3242798140016D0A2 /* RequestsListCoordinator.swift in Sources */,
 				8047F9C0252BB54D0088EB54 /* Observable.swift in Sources */,
 				80537977254D917100067B1B /* MainCoordinator.swift in Sources */,
 				80EF1EA7242798140016D0A2 /* HTTPProxyRequestInterceptor.swift in Sources */,
@@ -722,7 +722,7 @@
 				80B4A89E25445E3F001F63AA /* RequestsListCellViewModel.swift in Sources */,
 				80093AED24881BCB000AD359 /* RoundedView.swift in Sources */,
 				80150A032523EB1700E9A419 /* Theme.swift in Sources */,
-				80EF1E94242798140016D0A2 /* RequestDetailsPresenter.swift in Sources */,
+				80EF1E94242798140016D0A2 /* RequestDetailsCoordinator.swift in Sources */,
 				80EF1E8B242798140016D0A2 /* String.swift in Sources */,
 				8020256B250AA666009A4BAB /* NSAttributedString.swift in Sources */,
 				80093AEB24881A42000AD359 /* HTTPProxyFilter.swift in Sources */,

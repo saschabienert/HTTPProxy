@@ -17,7 +17,7 @@ private struct RequestFields: SearchableListItem {
     }
 }
 
-class RequestDetailsPresenter: Coordinator {
+class RequestDetailsCoordinator: Coordinator {
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
     weak var delegate: CoordinatorDelegate?
@@ -38,8 +38,8 @@ class RequestDetailsPresenter: Coordinator {
         viewController.title = title
         
         let vc1 = Summary().requestController(httpRequest: request)
-        let vc2 = Request(presenter: self).requestController(httpRequest: request)
-        let vc3 = Response(presenter: self).requestController(httpRequest: request)
+        let vc2 = Request(coordinator: self).requestController(httpRequest: request)
+        let vc3 = Response(coordinator: self).requestController(httpRequest: request)
         self.viewControllers.append(vc1)
         self.viewControllers.append(vc2)
         self.viewControllers.append(vc3)
@@ -58,7 +58,7 @@ class RequestDetailsPresenter: Coordinator {
     }
 }
 
-extension RequestDetailsPresenter: RequestDetailsViewControllerDelegate {
+extension RequestDetailsCoordinator: RequestDetailsViewControllerDelegate {
     func didDismiss() {
         delegate?.didDismiss()
     }
@@ -127,10 +127,10 @@ private struct Summary {
 
 private struct Request {
     
-    weak var presenter: RequestDetailsPresenter!
+    weak var coordinator: RequestDetailsCoordinator!
     
-    init(presenter: RequestDetailsPresenter) {
-        self.presenter = presenter
+    init(coordinator: RequestDetailsCoordinator) {
+        self.coordinator = coordinator
     }
     
     func requestController(httpRequest: HTTPRequest) -> SearchableListViewController {
@@ -151,7 +151,7 @@ private struct Request {
         if let bodyString = httpRequest.requestBodyString {
             viewController.buttonTitle = "Show Request Body"
             viewController.buttonCallback = {
-                self.presenter.openTextViewer(text: bodyString, filename: "Request Body")
+                self.coordinator.openTextViewer(text: bodyString, filename: "Request Body")
             }
         }
         
@@ -174,10 +174,10 @@ private struct Request {
 
 private struct Response {
     
-    weak var presenter: RequestDetailsPresenter!
+    weak var coordinator: RequestDetailsCoordinator!
     
-    init(presenter: RequestDetailsPresenter) {
-        self.presenter = presenter
+    init(coordinator: RequestDetailsCoordinator) {
+        self.coordinator = coordinator
     }
     
     func requestController(httpRequest: HTTPRequest) -> SearchableListViewController {
@@ -232,6 +232,6 @@ private struct Response {
     }
     
     private func viewFile(content: String, filename: String) {
-        presenter.openTextViewer(text: content, filename: filename)
+        coordinator.openTextViewer(text: content, filename: filename)
     }
 }

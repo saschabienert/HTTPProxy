@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class RequestsListPresenter: Coordinator {
+class RequestsListCoordinator: Coordinator {
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
     weak var delegate: CoordinatorDelegate?
@@ -55,7 +55,7 @@ class RequestsListPresenter: Coordinator {
     }
 }
 
-extension RequestsListPresenter: RequestsListViewOutput {
+extension RequestsListCoordinator: RequestsListViewOutput {
     
     func requestSelected(_ request: HTTPRequest) {
         parentCoordinator?.details(request: request)
@@ -66,7 +66,7 @@ extension RequestsListPresenter: RequestsListViewOutput {
     }
 }
 
-extension RequestsListPresenter: EditFilterViewControllerDelegate {
+extension RequestsListCoordinator: EditFilterViewControllerDelegate {
     func editFilterViewController(_ viewController: EditFilterViewController, didEditFilter filter: HTTPProxyFilter) {
         if viewController.filter == nil {
             requestsViewController.addFilter(filter)

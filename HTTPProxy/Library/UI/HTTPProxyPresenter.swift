@@ -2,7 +2,7 @@ import UIKit
 
 class HTTPProxyPresenter {
 
-    private var requestsListPresenter: RequestsListPresenter?
+    private var requestsListPresenter: RequestsListCoordinator?
     private var coordinator: MainCoordinator?
     static let shared = HTTPProxyPresenter()
     
@@ -15,7 +15,6 @@ class HTTPProxyPresenter {
             showRequestsList()
             return
         }
-        
         coordinator.dismiss()
     }
     

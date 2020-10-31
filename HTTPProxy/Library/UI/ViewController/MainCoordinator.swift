@@ -25,11 +25,11 @@ class MainCoordinator: Coordinator {
     }
 
     func start() {
-        let requestsListPresenter = RequestsListPresenter(navigationController: navigationController)
-        requestsListPresenter.delegate = self
-        requestsListPresenter.parentCoordinator = self
-        childCoordinators.append(requestsListPresenter)
-        requestsListPresenter.start()
+        let coordinator = RequestsListCoordinator(navigationController: navigationController)
+        coordinator.delegate = self
+        coordinator.parentCoordinator = self
+        childCoordinators.append(coordinator)
+        coordinator.start()
         topViewController.present(navigationController, animated: true, completion: nil)
     }
     
@@ -40,10 +40,10 @@ class MainCoordinator: Coordinator {
     }
     
     func details(request: HTTPRequest) {
-        let presenter = RequestDetailsPresenter(request: request, navigationController: navigationController)
-        presenter.delegate = self
-        childCoordinators.append(presenter)
-        presenter.start()
+        let coordinator = RequestDetailsCoordinator(request: request, navigationController: navigationController)
+        coordinator.delegate = self
+        childCoordinators.append(coordinator)
+        coordinator.start()
     }
 }
 
