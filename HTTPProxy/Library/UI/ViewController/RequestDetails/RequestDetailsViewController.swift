@@ -2,12 +2,13 @@ import UIKit
 
 protocol RequestDetailsViewControllerDelegate: class {
 
+    func didDismiss()
     func viewController(index: Int) -> UIViewController
 }
 
 class RequestDetailsViewController: UIViewController {
 
-    var delegate: RequestDetailsViewControllerDelegate!
+    weak var delegate: RequestDetailsViewControllerDelegate?
 
     @IBOutlet private var segmentedControl: UISegmentedControl!
     @IBOutlet private var contentView: UIView!
@@ -34,6 +35,10 @@ class RequestDetailsViewController: UIViewController {
 
         updateChildViewController(0)
     }
+    
+    deinit {
+        delegate?.didDismiss()
+    }
 
     @IBAction private func selectedAction() {
         updateChildViewController(segmentedControl.selectedSegmentIndex)
@@ -41,7 +46,7 @@ class RequestDetailsViewController: UIViewController {
 
     private func updateChildViewController(_ index: Int) {
         let old = children.first
-        let new = delegate.viewController(index: index)
+        let new = delegate!.viewController(index: index)
 
         old?.willMove(toParent: nil)
         addChild(new)

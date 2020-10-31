@@ -3,6 +3,7 @@ import UIKit
 class HTTPProxyPresenter {
 
     private var requestsListPresenter: RequestsListPresenter?
+    private var coordinator: MainCoordinator?
     static let shared = HTTPProxyPresenter()
     
     func handleShakeGesture() {
@@ -10,29 +11,34 @@ class HTTPProxyPresenter {
     }
     
     func presentViewController() {
-        if requestsListPresenter != nil {
-            requestsListPresenter?.close()
+        guard let coordinator = coordinator else {
+            showRequestsList()
             return
         }
-        guard let presentingViewController = presentingViewController() else {
+        
+        coordinator.dismiss()
+    }
+    
+    func showRequestsList() {
+        guard let topViewController = topViewController() else {
             return
         }
-        requestsListPresenter = RequestsListPresenter(presentingViewController: presentingViewController)
-        requestsListPresenter?.delegate = self
-        requestsListPresenter?.present()
+        coordinator = MainCoordinator(navigationController: UINavigationController(), topViewController: topViewController)
+        coordinator?.delegate = self
+        coordinator?.start()
     }
 
-    private func presentingViewController() -> UIViewController? {
-        var presentingViewController = UIApplication.shared.keyWindow?.rootViewController
-        while let presentedViewController = presentingViewController?.presentedViewController {
-            presentingViewController = presentedViewController
+    private func topViewController() -> UIViewController? {
+        var topViewController = UIApplication.shared.keyWindow?.rootViewController
+        while let presentedViewController = topViewController?.presentedViewController {
+            topViewController = presentedViewController
         }
-        return presentingViewController
+        return topViewController
     }
 }
 
-extension HTTPProxyPresenter: RequestsListPresenterDelegate {
-    func didDismissView() {
-        requestsListPresenter = nil
+extension HTTPProxyPresenter: CoordinatorDelegate {
+    func didDismiss() {
+        coordinator = nil
     }
 }

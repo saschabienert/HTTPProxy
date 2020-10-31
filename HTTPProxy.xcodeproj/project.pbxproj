@@ -27,6 +27,7 @@
 		8028414B24C61BAC00340D23 /* SelectableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8028414A24C61BAC00340D23 /* SelectableLabel.swift */; };
 		8047F9BC252BB4E70088EB54 /* TextViewerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8047F9BB252BB4E70088EB54 /* TextViewerViewModel.swift */; };
 		8047F9C0252BB54D0088EB54 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8047F9BF252BB54D0088EB54 /* Observable.swift */; };
+		80537977254D917100067B1B /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80537976254D917100067B1B /* MainCoordinator.swift */; };
 		805A0186254A261E0078EF51 /* RequestsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805A0185254A261E0078EF51 /* RequestsListViewModel.swift */; };
 		806E1AB02427948D005D7E24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E1AAF2427948D005D7E24 /* AppDelegate.swift */; };
 		806E1AB22427948D005D7E24 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E1AB12427948D005D7E24 /* ViewController.swift */; };
@@ -125,6 +126,7 @@
 		8028414A24C61BAC00340D23 /* SelectableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableLabel.swift; sourceTree = "<group>"; };
 		8047F9BB252BB4E70088EB54 /* TextViewerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewerViewModel.swift; sourceTree = "<group>"; };
 		8047F9BF252BB54D0088EB54 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		80537976254D917100067B1B /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		805A0185254A261E0078EF51 /* RequestsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsListViewModel.swift; sourceTree = "<group>"; };
 		806E1AAC2427948D005D7E24 /* HTTPProxy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HTTPProxy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		806E1AAF2427948D005D7E24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -393,6 +395,7 @@
 		80EF1E63242798140016D0A2 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				80537976254D917100067B1B /* MainCoordinator.swift */,
 				80EF1E67242798140016D0A2 /* RequestDetails */,
 				80EF1E75242798140016D0A2 /* RequestsList */,
 				80CBB6BB243A6DB4008F6BDE /* SearchableList */,
@@ -706,6 +709,7 @@
 				80EF1EA2242798140016D0A2 /* RequestsListCell.swift in Sources */,
 				80EF1EA3242798140016D0A2 /* RequestsListPresenter.swift in Sources */,
 				8047F9C0252BB54D0088EB54 /* Observable.swift in Sources */,
+				80537977254D917100067B1B /* MainCoordinator.swift in Sources */,
 				80EF1EA7242798140016D0A2 /* HTTPProxyRequestInterceptor.swift in Sources */,
 				80EF1E8D242798140016D0A2 /* UIWindow+ShakeGesture.swift in Sources */,
 				80EF1E87242798140016D0A2 /* Data.swift in Sources */,

@@ -17,19 +17,25 @@ private struct RequestFields: SearchableListItem {
     }
 }
 
-class RequestDetailsPresenter {
+class RequestDetailsPresenter: Coordinator {
+    var childCoordinators = [Coordinator]()
+    var navigationController: UINavigationController
+    weak var delegate: CoordinatorDelegate?
+    
     private let request: HTTPRequest
-    private let viewController: RequestDetailsViewController
-    private let presentingViewController: UINavigationController
     private var viewControllers: [UIViewController] = []
     
-    init(request: HTTPRequest, presentingViewController: UINavigationController) {
+    init(request: HTTPRequest, navigationController: UINavigationController) {
         self.request = request
-        self.presentingViewController = presentingViewController
-        self.viewController = RequestDetailsViewController(nibName: "RequestDetailsViewController", bundle: HTTPProxyUI.bundle)
-        self.viewController.delegate = self
+        self.navigationController = navigationController
+    }
+    
+    func start() {
+        let viewController = RequestDetailsViewController(nibName: "RequestDetailsViewController", bundle: HTTPProxyUI.bundle)
+        viewController.delegate = self
+        
         let title = request.request.url?.host ?? "Request Details"
-        self.viewController.title = title
+        viewController.title = title
         
         let vc1 = Summary().requestController(httpRequest: request)
         let vc2 = Request(presenter: self).requestController(httpRequest: request)
@@ -37,10 +43,8 @@ class RequestDetailsPresenter {
         self.viewControllers.append(vc1)
         self.viewControllers.append(vc2)
         self.viewControllers.append(vc3)
-    }
-    
-    func present() {
-        self.presentingViewController.pushViewController(viewController, animated: true)
+
+        navigationController.pushViewController(viewController, animated: true)
     }
     
     func openTextViewer(text: String, filename: String) {
@@ -50,11 +54,15 @@ class RequestDetailsPresenter {
         let viewModel = TextViewerViewModel(text: text, filename: filename, highlightedTextColor: color)
         textViewer.viewModel = viewModel
         textViewer.modalPresentationStyle = .fullScreen
-        presentingViewController.pushViewController(textViewer, animated: true)
+        navigationController.pushViewController(textViewer, animated: true)
     }
 }
 
 extension RequestDetailsPresenter: RequestDetailsViewControllerDelegate {
+    func didDismiss() {
+        delegate?.didDismiss()
+    }
+    
     func viewController(index: Int) -> UIViewController {
         return viewControllers[index]
     }

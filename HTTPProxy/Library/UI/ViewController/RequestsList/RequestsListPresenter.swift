@@ -1,31 +1,23 @@
 import Foundation
 import UIKit
 
-protocol RequestsListPresenterDelegate: class {
-    func didDismissView()
-}
-
-class RequestsListPresenter: NSObject {
+class RequestsListPresenter: Coordinator {
+    var childCoordinators = [Coordinator]()
+    var navigationController: UINavigationController
+    weak var delegate: CoordinatorDelegate?
     
-    private var source: [HTTPRequest] = []
     private let requestsViewController: RequestsListViewController
-    private var navigationController: UINavigationController
     private weak var presentingViewController: UIViewController?
-    weak var delegate: RequestsListPresenterDelegate?
+    weak var parentCoordinator: MainCoordinator?
 
-    init(presentingViewController: UIViewController) {
-        self.presentingViewController = presentingViewController
-        self.requestsViewController = UIStoryboard(name: "RequestsListViewController", bundle: HTTPProxyUI.bundle).instantiateInitialViewController() as! RequestsListViewController
-        
-        self.requestsViewController.viewModel = RequestsListViewModel()
-
-        let navigationController = UINavigationController(rootViewController: self.requestsViewController)
+    init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-
-        super.init()
-
+        self.requestsViewController = UIStoryboard(name: "RequestsListViewController", bundle: HTTPProxyUI.bundle).instantiateInitialViewController() as! RequestsListViewController
         self.requestsViewController.requestsListViewOutput = self
-
+        self.requestsViewController.viewModel = RequestsListViewModel()
+    }
+    
+    func start() {
         let navigationBar = navigationController.navigationBar
         navigationBar.isTranslucent = false
         navigationBar.tintColor = HTTPProxyUI.settings.colorScheme.primaryTextColor
@@ -37,15 +29,13 @@ class RequestsListPresenter: NSObject {
         let filterButton =  UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(createFilter))
         let clearButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(clear))
         requestsViewController.navigationItem.rightBarButtonItems = [clearButton, filterButton]
-    }
     
-    func present() {
-        presentingViewController?.present(navigationController, animated: false)
+        navigationController.pushViewController(requestsViewController, animated: true)
     }
     
     @objc func close() {
-        navigationController.dismiss(animated: true) {
-            self.delegate?.didDismissView()
+        requestsViewController.dismiss(animated: true) {
+              self.delegate?.didDismiss()
         }
     }
     
@@ -68,8 +58,7 @@ class RequestsListPresenter: NSObject {
 extension RequestsListPresenter: RequestsListViewOutput {
     
     func requestSelected(_ request: HTTPRequest) {
-        let presenter = RequestDetailsPresenter(request: request, presentingViewController: navigationController)
-              presenter.present()
+        parentCoordinator?.details(request: request)
     }
     
     func editFilter(_ filter: HTTPProxyFilter) {
