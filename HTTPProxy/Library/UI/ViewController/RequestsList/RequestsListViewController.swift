@@ -77,11 +77,13 @@ extension RequestsListViewController: RequestDetailsDelegate {
 }
 
 extension RequestsListViewController: RequestFilterViewControllerDelegate {
-    func editFilter(_ filter: HTTPProxyFilter) {
-        requestsListViewOutput?.editFilter(filter)
+    func editFilter(_ filter: QuickFilter) {
+        if let filter = filter as? HTTPProxyFilter {
+            requestsListViewOutput?.editFilter(filter)
+        }
     }
     
-    func deleteFilter(_ filter: HTTPProxyFilter) {
+    func deleteFilter(_ filter: QuickFilter) {
         viewModel.deleteFilter(filter)
     }
     
@@ -90,8 +92,7 @@ extension RequestsListViewController: RequestFilterViewControllerDelegate {
         view.layoutIfNeeded()
     }
     
-    func filterSelected(_ filter: HTTPProxyFilter) {
-        filter.enabled = !filter.enabled
-        viewModel.showFilteredRequests()
+    func filterSelected(_ filter: QuickFilter) {
+        viewModel.toggleFilter(filter)
     }
 }

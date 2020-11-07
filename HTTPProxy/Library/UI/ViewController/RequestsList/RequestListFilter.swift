@@ -2,7 +2,7 @@ import Foundation
 
 struct RequestListFilter {
     
-    func filterRequests(_ requests: [HTTPRequest], with filters: [HTTPProxyFilter]) -> [HTTPRequest] {
+    func filterRequests(_ requests: [HTTPRequest], with filters: [QuickFilter]) -> [HTTPRequest] {
         let enabledFilters = filters.filter({ filter -> Bool in
             filter.enabled
         })

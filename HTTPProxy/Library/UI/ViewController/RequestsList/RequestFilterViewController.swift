@@ -7,9 +7,9 @@ class RequestFilterCell: UICollectionViewCell {
 
 protocol RequestFilterViewControllerDelegate: class {
     func filterDidUpdateHeight(_ height: CGFloat)
-    func filterSelected(_ filter: HTTPProxyFilter)
-    func editFilter(_ filter: HTTPProxyFilter)
-    func deleteFilter(_ filter: HTTPProxyFilter)
+    func filterSelected(_ filter: QuickFilter)
+    func editFilter(_ filter: QuickFilter)
+    func deleteFilter(_ filter: QuickFilter)
 }
 
 class RequestFilterViewController: UIViewController {
@@ -18,7 +18,7 @@ class RequestFilterViewController: UIViewController {
     @IBOutlet private weak var collectionViewHeight: NSLayoutConstraint!
     private var height: CGFloat = 0.0
     
-    var filters: [HTTPProxyFilter] = []
+    var filters: [QuickFilter] = []
     weak var delegate: RequestFilterViewControllerDelegate?
     
     override func viewDidLoad() {
@@ -41,22 +41,22 @@ class RequestFilterViewController: UIViewController {
         }
     }
 
-    func loadFilters(_ filters: [HTTPProxyFilter]) {
+    func loadFilters(_ filters: [QuickFilter]) {
         self.filters = filters
         collectionView.reloadData()
     }
     
-    private func filterSelected(_ filter: HTTPProxyFilter) {
+    private func filterSelected(_ filter: QuickFilter) {
         delegate?.filterSelected(filter)
         collectionView.reloadData()
     }
     
-    private func editFilter(_ filter: HTTPProxyFilter) {
+    private func editFilter(_ filter: QuickFilter) {
         delegate?.editFilter(filter)
         collectionView.reloadData()
     }
     
-    private func deleteFilter(_ filter: HTTPProxyFilter) {
+    private func deleteFilter(_ filter: QuickFilter) {
         delegate?.deleteFilter(filter)
         collectionView.reloadData()
     }

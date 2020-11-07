@@ -4,7 +4,7 @@ class RequestsListViewModel {
     
     private var source: [HTTPRequest] = []
     private var filteredSource: [HTTPRequest] = []
-    let filters: Observable<[HTTPProxyFilter]>
+    let filters: Observable<[QuickFilter]>
     let searchableListSection: Observable<SearchableListSection?>
 
     init() {
@@ -16,7 +16,7 @@ class RequestsListViewModel {
         showFilteredRequests()
     }
     
-    func showFilteredRequests() {
+    private func showFilteredRequests() {
         let allFilters = filters.value
         filteredSource = RequestListFilter().filterRequests(source, with: allFilters)
 
@@ -55,13 +55,20 @@ class RequestsListViewModel {
         showFilteredRequests()
     }
     
-    func addFilter(_ filter: HTTPProxyFilter) {
+    func addFilter(_ filter: QuickFilter) {
         HTTPProxy.shared.filters.append(filter)
         reloadFilters()
     }
     
-    func deleteFilter(_ filter: HTTPProxyFilter) {
-        if let index = HTTPProxy.shared.filters.firstIndex(of: filter) {
+    func toggleFilter(_ filter: QuickFilter) {
+        if let selectedFilter = HTTPProxy.shared.filters.first(where: { $0 === filter }) {
+            selectedFilter.enabled = !filter.enabled
+        }
+        reloadFilters()
+    }
+    
+    func deleteFilter(_ filter: QuickFilter) {
+        if let index = HTTPProxy.shared.filters.firstIndex(where: { $0 === filter }) {
             HTTPProxy.shared.filters.remove(at: index)
         }
         reloadFilters()

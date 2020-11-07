@@ -16,9 +16,9 @@ extension KeyValuePair: Equatable {
     }
 }
 
-public protocol QuickFilter {
+public protocol QuickFilter: AnyObject {
     var name: String { get }
-    var enabled: Bool { get }
+    var enabled: Bool { get set }
     func matchesRequest(_ request: URLRequest) -> Bool
 }
 

@@ -4,7 +4,7 @@ public class HTTPProxy {
 
     public static let shared = HTTPProxy()
     public weak var delegate: HTTPProxyDelegate?
-    public var filters: [HTTPProxyFilter] = []
+    public var filters: [QuickFilter] = []
 
     private let queue = DispatchQueue(label: "HTTPProxy")
     var requests = [HTTPRequest]()
