@@ -39,7 +39,7 @@ class MainCoordinator: Coordinator {
         }
     }
     
-    func details(request: HTTPRequest) {
+    func showDetails(request: HTTPRequest) {
         let coordinator = RequestDetailsCoordinator(request: request, navigationController: navigationController)
         coordinator.delegate = self
         childCoordinators.append(coordinator)

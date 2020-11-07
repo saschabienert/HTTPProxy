@@ -35,7 +35,7 @@ class RequestsListCoordinator: Coordinator {
     
     @objc func close() {
         requestsViewController.dismiss(animated: true) {
-              self.delegate?.didDismiss()
+            self.delegate?.didDismiss()
         }
     }
     
@@ -58,7 +58,7 @@ class RequestsListCoordinator: Coordinator {
 extension RequestsListCoordinator: RequestsListViewOutput {
     
     func requestSelected(_ request: HTTPRequest) {
-        parentCoordinator?.details(request: request)
+        parentCoordinator?.showDetails(request: request)
     }
     
     func editFilter(_ filter: HTTPProxyFilter) {
