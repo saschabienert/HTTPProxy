@@ -41,11 +41,14 @@ extension Data {
     }
     
     private func prettyPrintedJSONObject(_ jsonObject: Any) -> String? {
-        guard let prettyJsonData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted),
-            let jsonString = prettyJsonData.toString() else {
-                return nil
+        var options: JSONSerialization.WritingOptions = .prettyPrinted
+        if #available(iOS 13.0, *) {
+            options.insert(.withoutEscapingSlashes)
         }
-
+        guard let prettyJsonData = try? JSONSerialization.data(withJSONObject: jsonObject, options: options),
+              let jsonString = prettyJsonData.toString() else {
+            return nil
+        }
         return jsonString
     }
 }
