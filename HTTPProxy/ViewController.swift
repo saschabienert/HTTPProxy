@@ -1,5 +1,14 @@
 import UIKit
 
+class GithubFilter: QuickFilter {
+    let name = "Github"
+    var enabled = false
+    
+    func matchesRequest(_ request: URLRequest) -> Bool {
+        return request.url?.absoluteString.range(of: "github") != nil
+    }
+}
+
 class ViewController: UIViewController {
     
     @IBOutlet private var intervalLabel: UILabel!
@@ -16,7 +25,7 @@ class ViewController: UIViewController {
         
         self.sendRequest(self)
         
-        var filters: [HTTPProxyFilter] = []
+        var filters: [QuickFilter] = []
         
         var requestFilter = RequestFilter()
         requestFilter.host = "jsonplaceholder.typicode.com"
@@ -43,6 +52,8 @@ class ViewController: UIViewController {
         let filter5 = HTTPProxyFilter(name: "https", requestFilter: requestFilter)
         filter5.enabled = true
         filters.append(filter5)
+        
+        filters.append(GithubFilter())
         
         HTTPProxy.shared.filters = filters
         
@@ -105,6 +116,7 @@ class ViewController: UIViewController {
         getXml()
         getHtml()
         getYml()
+        getRepos()
     }
     
     func sendPost() {
@@ -181,6 +193,12 @@ class ViewController: UIViewController {
     
     func getXml() {
         let url = URL(string: "https://schemas.xmlsoap.org/soap/envelope/")!
+        let request = URLRequest(url: url)
+        sendRequest(request)
+    }
+    
+    func getRepos() {
+        let url = URL(string: "https://api.github.com/repositories")!
         let request = URLRequest(url: url)
         sendRequest(request)
     }
