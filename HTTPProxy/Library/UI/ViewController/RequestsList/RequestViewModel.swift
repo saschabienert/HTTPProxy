@@ -51,4 +51,8 @@ struct RequestViewModel: SearchableListItem {
         }
         return nil
     }
+
+    var customLabel: String? {
+        return request.tag
+    }
 }

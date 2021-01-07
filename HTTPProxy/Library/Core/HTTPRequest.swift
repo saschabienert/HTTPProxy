@@ -28,7 +28,9 @@ public class HTTPRequest {
 
         return bodyData.toString()
     }
-    
+
+    public var tag: String?
+
     init(request: URLRequest) {
         self.request = request
         self.requestDate = Date()

@@ -6,6 +6,7 @@ class RequestsListCell: UITableViewCell {
     @IBOutlet private var titleLabel: SelectableLabel!
     @IBOutlet private var methodLabel: UILabel!
     @IBOutlet private var statusLabel: UILabel!
+    @IBOutlet private var customLabel: UILabel!
     @IBOutlet private var contentLabel: SelectableLabel!
     @IBOutlet private var activityView: UIActivityIndicatorView!
     private var viewModel: RequestsListCellViewModel!
@@ -29,6 +30,11 @@ class RequestsListCell: UITableViewCell {
         statusLabel.font = boldFont
         statusLabel.layer.masksToBounds = true
         statusLabel.layer.cornerRadius = 8.0
+        customLabel.font = boldFont
+        customLabel.layer.masksToBounds = true
+        customLabel.layer.cornerRadius = 8.0
+        customLabel.backgroundColor = HTTPProxyUI.settings.colorScheme.selectedColor
+        customLabel.textColor = .white
         
         activityView.color = HTTPProxyUI.settings.colorScheme.primaryTextColor
     }
@@ -44,7 +50,10 @@ class RequestsListCell: UITableViewCell {
         viewModel.value.bind { [weak self] (value) in
             self?.contentLabel.attributedText = value
         }
-        
+
+        customLabel.isHidden = searchableListItem.customLabel == nil
+        customLabel.text = searchableListItem.customLabel
+
         viewModel.method.bind { [weak self] (method) in
             if let method = method {
                 self?.methodLabel.text = method

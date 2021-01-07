@@ -11,6 +11,7 @@ protocol SearchableListItem {
     var value: String {get}
     var method: String? {get}
     var statusCode: Int? {get}
+    var customLabel: String? {get}
     var requestStatus: RequestStatus? {get}
 }
 

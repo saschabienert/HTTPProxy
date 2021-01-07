@@ -2,6 +2,9 @@ import Foundation
 import UIKit
 
 private struct RequestFields: SearchableListItem {
+    var customLabel: String? {
+        return nil
+    }
     
     let key: String
     let value: String
