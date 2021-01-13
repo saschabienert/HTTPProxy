@@ -20,7 +20,7 @@
                             <rect key="frame" x="5" y="5" width="365" height="148"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="left" semanticContentAttribute="forceLeftToRight" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Hmz-QS-7s8">
-                                    <rect key="frame" x="0.0" y="0.0" width="309.5" height="20"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="314.5" height="20"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label with very long title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lAV-EI-dyk" customClass="SelectableLabel" customModule="HTTPProxy" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="184.5" height="20"/>
@@ -28,17 +28,17 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DELETE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="qZl-cD-rzn">
-                                            <rect key="frame" x="189.5" y="0.0" width="45" height="20"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DELETE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="qZl-cD-rzn" customClass="RoundedLabel" customModule="HTTPProxy" customModuleProvider="target">
+                                            <rect key="frame" x="189.5" y="0.0" width="50" height="20"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="45" id="GrY-do-N6d"/>
+                                                <constraint firstAttribute="width" constant="50" id="GrY-do-N6d"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="200" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="50M-es-cf9">
-                                            <rect key="frame" x="239.5" y="0.0" width="45" height="20"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="200" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="50M-es-cf9" customClass="RoundedLabel" customModule="HTTPProxy" customModuleProvider="target">
+                                            <rect key="frame" x="244.5" y="0.0" width="45" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="45" id="pqu-id-M5Q"/>
                                             </constraints>
@@ -47,7 +47,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="bfj-5K-8Cd">
-                                            <rect key="frame" x="289.5" y="0.0" width="20" height="20"/>
+                                            <rect key="frame" x="294.5" y="0.0" width="20" height="20"/>
                                             <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </activityIndicatorView>
                                     </subviews>
@@ -56,7 +56,7 @@
                                     </constraints>
                                 </stackView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="eqK-GB-6kM" customClass="RoundedLabel" customModule="HTTPProxy" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="25" width="16" height="20"/>
+                                    <rect key="frame" x="0.0" y="25" width="8" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="20" id="Cjz-5D-3fl"/>
                                     </constraints>
@@ -109,8 +109,14 @@
         </view>
     </objects>
     <designables>
+        <designable name="50M-es-cf9">
+            <size key="intrinsicContentSize" width="35.5" height="26"/>
+        </designable>
         <designable name="eqK-GB-6kM">
-            <size key="intrinsicContentSize" width="16" height="16"/>
+            <size key="intrinsicContentSize" width="8" height="8"/>
+        </designable>
+        <designable name="qZl-cD-rzn">
+            <size key="intrinsicContentSize" width="69" height="28.5"/>
         </designable>
     </designables>
 </document>

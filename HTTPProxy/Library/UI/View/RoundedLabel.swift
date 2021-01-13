@@ -21,7 +21,8 @@ import UIKit
     }
 
     var edgeInsets: UIEdgeInsets {
-        return UIEdgeInsets(top: cornerRadius, left: cornerRadius, bottom: cornerRadius, right: cornerRadius)
+        let inset = cornerRadius / 2
+        return UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
     }
 
     override func drawText(in rect: CGRect) {
