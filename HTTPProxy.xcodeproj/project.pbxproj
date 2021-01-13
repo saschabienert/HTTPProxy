@@ -29,6 +29,7 @@
 		8047F9C0252BB54D0088EB54 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8047F9BF252BB54D0088EB54 /* Observable.swift */; };
 		80537977254D917100067B1B /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80537976254D917100067B1B /* MainCoordinator.swift */; };
 		805A0186254A261E0078EF51 /* RequestsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805A0185254A261E0078EF51 /* RequestsListViewModel.swift */; };
+		8063AED625AD95BB009FDA17 /* RoundedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8063AED525AD95BB009FDA17 /* RoundedLabel.swift */; };
 		806E1AB02427948D005D7E24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E1AAF2427948D005D7E24 /* AppDelegate.swift */; };
 		806E1AB22427948D005D7E24 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E1AB12427948D005D7E24 /* ViewController.swift */; };
 		806E1AB52427948D005D7E24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 806E1AB32427948D005D7E24 /* Main.storyboard */; };
@@ -128,6 +129,7 @@
 		8047F9BF252BB54D0088EB54 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		80537976254D917100067B1B /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		805A0185254A261E0078EF51 /* RequestsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsListViewModel.swift; sourceTree = "<group>"; };
+		8063AED525AD95BB009FDA17 /* RoundedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedLabel.swift; sourceTree = "<group>"; };
 		806E1AAC2427948D005D7E24 /* HTTPProxy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HTTPProxy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		806E1AAF2427948D005D7E24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		806E1AB12427948D005D7E24 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 			isa = PBXGroup;
 			children = (
 				80093AEE24887DB9000AD359 /* CollectionViewCenterLayout.swift */,
+				8063AED525AD95BB009FDA17 /* RoundedLabel.swift */,
 				80093AEC24881BCB000AD359 /* RoundedView.swift */,
 				8028414A24C61BAC00340D23 /* SelectableLabel.swift */,
 			);
@@ -698,6 +701,7 @@
 				80EF1EAA242798140016D0A2 /* HTTPRequest.swift in Sources */,
 				8047F9BC252BB4E70088EB54 /* TextViewerViewModel.swift in Sources */,
 				80150A022523EB1700E9A419 /* HTMLUtils.swift in Sources */,
+				8063AED625AD95BB009FDA17 /* RoundedLabel.swift in Sources */,
 				80EF1E9D242798140016D0A2 /* RequestDetailsViewController.swift in Sources */,
 				80EF1E9F242798140016D0A2 /* RequestViewModel.swift in Sources */,
 				80EF1EA4242798140016D0A2 /* HTTPProxyPresenter.swift in Sources */,
