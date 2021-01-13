@@ -7,6 +7,7 @@ class RequestsListCellViewModel {
     let key: Observable<NSAttributedString>
     let value: Observable<NSAttributedString>
     let method: Observable<String?>
+    let customText: Observable<String?>
     let requestStatus: Observable<RequestStatus?>
 
     init(searchableListItem: SearchableListItem) {
@@ -15,6 +16,7 @@ class RequestsListCellViewModel {
         value = Observable(RequestsListCellViewModel.formattedValue(searchableListItem.value))
         method = Observable(searchableListItem.method)
         requestStatus = Observable(searchableListItem.requestStatus)
+        customText = Observable(searchableListItem.customLabel)
     }
 
     func emphasize(text: String) {

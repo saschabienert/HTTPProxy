@@ -55,8 +55,8 @@
                                         <constraint firstAttribute="height" constant="20" id="cGC-pd-uBD"/>
                                     </constraints>
                                 </stackView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="eqK-GB-6kM">
-                                    <rect key="frame" x="0.0" y="25" width="50" height="20"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="eqK-GB-6kM" customClass="RoundedLabel" customModule="HTTPProxy" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="25" width="16" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="20" id="Cjz-5D-3fl"/>
                                     </constraints>
@@ -64,20 +64,15 @@
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AcP-F0-mdW" customClass="SelectableLabel" customModule="HTTPProxy" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="50" width="65" height="98"/>
+                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AcP-F0-mdW" customClass="SelectableLabel" customModule="HTTPProxy" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="50" width="0.0" height="98"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <gestureRecognizers/>
-                                    <string key="text">pega
-saz
-aasddsd
-sdss</string>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" red="0.1843137255" green="0.21960784310000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </stackView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -113,4 +108,9 @@ sdss</string>
             <point key="canvasLocation" x="76.5" y="18"/>
         </view>
     </objects>
+    <designables>
+        <designable name="eqK-GB-6kM">
+            <size key="intrinsicContentSize" width="16" height="16"/>
+        </designable>
+    </designables>
 </document>
